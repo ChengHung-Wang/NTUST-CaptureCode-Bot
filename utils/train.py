@@ -10,6 +10,21 @@ from loguru import logger
 from utils import load_cache
 from nets import Net
 
+from prettytable import PrettyTable
+
+def count_parameters(model):
+    table = PrettyTable(["Modules", "Parameters"])
+    total_params = 0
+    for name, parameter in model.named_parameters():
+        if not parameter.requires_grad: continue
+        params = parameter.numel()
+        table.add_row([name, params])
+        total_params+=params
+    print(table)
+    print(f"Total Trainable Params: {total_params}")
+    return total_params
+
+acc_every_10_steps = []
 
 class Train:
     def __init__(self, project_name: str):
@@ -25,6 +40,12 @@ class Train:
         self.optimizer = None
         self.config = Config(project_name)
         self.conf = self.config.load_config()
+
+        # try getting the dataset size from congif Path
+        try:
+            self.dataset_size = self.conf['System']['Path'].split('/')[4]
+        except:
+            self.dataset_size = "unknown"
 
         self.test_step = self.conf['Train']['TEST_STEP']
         self.save_checkpoints_step = self.conf['Train']['SAVE_CHECKPOINTS_STEP']
@@ -75,7 +96,8 @@ class Train:
         logger.info(self.net)
         logger.info("\nBuilding End")
 
-
+        self.total_parameters = count_parameters(self.net)
+        #print(self.net.parameters())
 
         self.net = self.net.to(self.device)
         logger.info("\nGet Data Loader...")
@@ -93,6 +115,13 @@ class Train:
 
     def start(self):
         val_iter = iter(self.val)
+
+        # stop training the model when the accuracy isn't growing
+        highest_accuracy = 0
+        stop_count = 0
+        max_stop_count = 50
+        early_stopping = False
+
         while True:
             for idx, (inputs, labels, labels_length) in enumerate(self.train):
                 self.now_time = time.time()
@@ -103,22 +132,28 @@ class Train:
                 self.avg_loss += loss
 
                 self.step += 1
-
+                
+                # print every step
                 if self.step % 100 == 0 and self.step % self.test_step != 0:
                     logger.info("{}\tEpoch: {}\tStep: {}\tLastLoss: {}\tAvgLoss: {}\tLr: {}".format(
                         time.strftime("[%Y-%m-%d-%H_%M_%S]", time.localtime(self.now_time)), self.epoch, self.step,
                         str(loss), str(self.avg_loss / 100), lr
                     ))
                     self.avg_loss = 0
+
+                # save model
                 if self.step % self.save_checkpoints_step == 0 and self.step != 0:
-                    model_path = os.path.join(self.checkpoints_path, "checkpoint_{}_{}_{}.tar".format(
-                        self.project_name, self.epoch, self.step,
+                    model_path = os.path.join(self.checkpoints_path, "checkpoint_{}_para{}_ds{}_ep{}_step{}_{}.tar".format(
+                        self.project_name, self.total_parameters, self.dataset_size, self.epoch, self.step, time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime(self.now_time))
+                        #{}_para{}_ds{}_acc{}_ep{}_step{}_{}.onnx"
+                        #self.project_name, self.total_parameters, self.dataset_size, str(accuracy), self.epoch, self.step, time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime(self.now_time))
                     ))
                     self.net.scheduler.step()
                     self.net.save_model(model_path,
                                         {"net": self.net.state_dict(), "optimizer": self.net.optimizer.state_dict(),
                                          "epoch": self.epoch, "step": self.step, "lr": lr})
 
+                # print test result every test_steps
                 if self.step % self.test_step == 0:
                     try:
                         test_inputs, test_labels, test_labels_length = next(val_iter)
@@ -133,13 +168,50 @@ class Train:
                     pred_labels, labels_list, correct_list, error_list = self.net.tester(test_inputs, test_labels,
                                                                                          test_labels_length)
                     self.net = self.net.train()
-                    accuracy = len(correct_list) / test_inputs.shape[0]
+                    #accuracy = len(correct_list) / test_inputs.shape[0]
+                    
+                    #logger.info(f'\n pred_labels: \n{pred_labels}')
+                    #logger.info(f'\n labels_list: \n{labels_list}')
+                    correct_label_count = 0
+                    label_count = 0
+                    for i_label_list in range(len(labels_list)):
+                        for ii_label_list in range(len(labels_list[i_label_list])):
+                            correct_label = labels_list[i_label_list][ii_label_list]
+                            try:
+                                pred_label = pred_labels[i_label_list][ii_label_list]
+                            except:
+                                pred_label = None
+                            
+                            if correct_label == pred_label:
+                                correct_label_count += 1
+                            label_count += 1
+
+                    accuracy = correct_label_count / label_count
+                    
+                    if accuracy <= highest_accuracy:
+                        stop_count += 1
+                        print(f'current stop_count: {stop_count}')
+                        if stop_count >= max_stop_count:
+                            early_stopping = True
+                            print(f'-------going to stop early!!!--------')
+                    else:
+                        stop_count = 0
+                        highest_accuracy = max(accuracy, highest_accuracy)
+
+                    
+                    acc_every_10_steps.append(accuracy)
+                    with open(f'acc_list_{self.total_parameters}_{self.dataset_size}.txt', 'w') as acc_file: # training steps & versions  #{}_para{}_ds{}_v{}_acc{}_ep{}_step{}.onnx
+                        for acc_e in acc_every_10_steps:
+                            acc_file.write(f'{str(acc_e)}\n')
+                    acc_file.close()
+
                     logger.info("{}\tEpoch: {}\tStep: {}\tLastLoss: {}\tAvgLoss: {}\tLr: {}\tAcc: {}".format(
                         time.strftime("[%Y-%m-%d-%H_%M_%S]", time.localtime(self.now_time)), self.epoch, self.step,
                         str(loss), str(self.avg_loss / 100), lr, accuracy
                     ))
                     self.avg_loss = 0
-                    if accuracy > self.target_acc and self.epoch > self.min_epoch and self.avg_loss < self.max_loss:
+                    #if accuracy > self.target_acc and self.epoch > self.min_epoch and self.avg_loss < self.max_loss:
+                    if early_stopping and self.epoch > self.min_epoch and self.avg_loss < self.max_loss:
                         logger.info("\nTraining Finished!Exporting Model...")
                         dummy_input = self.net.get_random_tensor()
                         input_names = ["input1"]
@@ -150,9 +222,9 @@ class Train:
                         self.net = self.net.eval().cpu()
                         dynamic_ax = {'input1': {3: 'image_wdith'}, "output": {1: 'seq'}}
                         self.net.export_onnx(self.net, dummy_input,
-                                             os.path.join(self.models_path, "{}_{}_{}_{}_{}.onnx".format(
-                                                 self.project_name, str(accuracy), self.epoch, self.step,
-                                                 time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime(self.now_time))))
+                                             os.path.join(self.models_path, "{}_para{}_ds{}_acc{}_ep{}_step{}_{}.onnx".format(
+                                                 self.project_name, self.total_parameters, self.dataset_size, str(accuracy), self.epoch, self.step, time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime(self.now_time))
+                                                 )) # export models based on (dataset), (model_size), (training_steps), (versions)
                                              , input_names, output_names, dynamic_ax)
                         with open(os.path.join(self.models_path, "charsets.json"), 'w', encoding="utf-8") as f:
                             f.write(json.dumps({"charset": self.net.charset, "image": self.resize, "word": self.word, 'channel': self.ImageChannel}, ensure_ascii=False))

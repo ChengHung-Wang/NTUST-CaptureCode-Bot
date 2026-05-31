@@ -1,9 +1,11 @@
 import fire
+import os
 
 from loguru import logger
 from utils import project_manager
 from utils import cache_data
 from utils import train
+
 
 
 class App:
@@ -25,8 +27,7 @@ class App:
     def train(self, project_name: str):
         logger.info("\nStart Train ----> {}\n".format(project_name))
         trainer = train.Train(project_name)
-        trainer.start()
-
+        trainer.start() 
 
 
 if __name__ == '__main__':
