@@ -1,2 +1,29 @@
+# IDE and editor settings
 .idea/
+
+Python cache and temporary files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pycache
+*.tmp
+*.log
+*.sqlite3
+*.env
+*.venv
+venv/
+bot_env/
+
+# Dataset/model cache and generated files
+
+projects/ntust_mail/cache/
+tools/**/*.png
+tools/correct/
+tools/correct2/
+tools/correct2.zip
+
+**/checkpoints/
+**/images_set/
+
 .DS_Store
