@@ -71,20 +71,35 @@ class Train:
             self.device = Net.get_device(self.gpu_id)
             logger.info("\nUSE CPU".format(self.gpu_id))
         logger.info("\nSearch for history checkpoints...")
-        history_checkpoints = os.listdir(self.checkpoints_path)
+        history_checkpoints = [f for f in os.listdir(self.checkpoints_path)
+                               if os.path.isfile(os.path.join(self.checkpoints_path, f))]
         if len(history_checkpoints) > 0:
             history_step = 0
             newer_checkpoint = None
             for checkpoint in history_checkpoints:
-                checkpoint_name = checkpoint.split(".")[0].split("_")
-                if int(checkpoint_name[3]) > history_step:
+                checkpoint_base = os.path.splitext(checkpoint)[0]
+                checkpoint_name = checkpoint_base.split("_")
+                step = None
+                for part in checkpoint_name:
+                    if part.startswith("step"):
+                        try:
+                            step = int(part[4:])
+                        except ValueError:
+                            step = None
+                        break
+                if step is None:
+                    continue
+                if step > history_step:
                     newer_checkpoint = checkpoint
-                    history_step = int(checkpoint_name[3])
-            param, self.state_dict, self.optimizer= Net.load_checkpoint(
-                os.path.join(self.checkpoints_path, newer_checkpoint), self.device)
-            self.epoch, self.step, self.lr = param['epoch'], param['step'], param['lr']
-            self.epoch += 1
-            self.step += 1
+                    history_step = step
+            if newer_checkpoint is not None:
+                param, self.state_dict, self.optimizer = Net.load_checkpoint(
+                    os.path.join(self.checkpoints_path, newer_checkpoint), self.device)
+                self.epoch, self.step, self.lr = param['epoch'], param['step'], param['lr']
+                self.epoch += 1
+                self.step += 1
+            else:
+                logger.info("\nNo valid history checkpoints found")
 
         else:
             logger.info("\nEmpty history checkpoints")
