@@ -1,15 +1,15 @@
 Model:
-    CharSet: [' ', R, S, Y, W, C, U, A, '6', G, '2', M, P, F, Z, L, E, '9', '4', '8',
-        D, '5', J, N, B, Q, X, '3', '7', V, K, H, T]
+    CharSet: [' ', Q, E, '4', M, '6', U, D, G, F, B, '3', A, X, R, K, P, '8', J, T,
+        '9', L, N, V, '2', W, Y, '5', Z, '7', S, C, H, I]
     ImageChannel: 1
     ImageHeight: 64
     ImageWidth: -1
     Word: false
 System:
     Allow_Ext: [jpg, jpeg, png, bmp]
-    GPU: false
+    GPU: true
     GPU_ID: 0
-    Path: ./projects/NtustNewMailCaptcha/images_set/images
+    Path: .\projects\NtustNewMailCaptcha\images_set\images\
     Project: NtustNewMailCaptcha
     Val: 0.03
 Train:
@@ -21,4 +21,4 @@ Train:
     SAVE_CHECKPOINTS_STEP: 300
     TARGET: {Accuracy: 0.98, Cost: 0.05, Epoch: 1}
     TEST_BATCH_SIZE: 64
-    TEST_STEP: 100
+    TEST_STEP: 300
