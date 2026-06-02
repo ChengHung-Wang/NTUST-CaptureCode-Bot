@@ -1,6 +1,6 @@
 Model:
-    CharSet: [' ', '9', '7', '8', '2', '0', '6', '4', '1', '3', '5']
-    ImageChannel: 1
+    CharSet: [' ', '4', '8', '6', '0', '9', '5', '2', '3', '1', '7']
+    ImageChannel: 3
     ImageHeight: 64
     ImageWidth: -1
     Word: false
@@ -8,7 +8,7 @@ System:
     Allow_Ext: [jpg, jpeg, png, bmp]
     GPU: true
     GPU_ID: 0
-    Path: .\projects\NtustCourseJudge\images_set\images\
+    Path: .\projects\NtustCourseJudge\images_set\original
     Project: NtustCourseJudge
     Val: 0.03
 Train:
