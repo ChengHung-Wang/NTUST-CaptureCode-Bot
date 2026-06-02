@@ -1,0 +1,252 @@
+(base) PS C:\Users\王正宏\Desktop\NTUST-CaptureCode-Bot> python3 app.py cache NtustNewMailCaptcha .\projects\NtustNewMailCaptcha\images_set\images\
+2026-06-02 05:17:02.801 | INFO     | __main__:__init__:14 - 
+Hello baby~
+2026-06-02 05:17:02.802 | INFO     | __main__:cache:22 - 
+Caching Data ----> NtustNewMailCaptcha
+Path ----> .\projects\NtustNewMailCaptcha\images_set\images\
+2026-06-02 05:17:02.813 | INFO     | utils.cache_data:__get_label_from_name:36 - 
+Files number is 6933.
+100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 6933/6933 [00:00<00:00, 887586.52it/s]
+2026-06-02 05:17:02.824 | INFO     | utils.cache_data:__collect_data:93 - 
+Coolect labels is [" ", "7", "E", "F", "A", "6", "4", "8", "N", "H", "2", "J", "X", "U", "V", "B", "C", "G", "3", "W", "D", "Z", "M", "Y", "K", "9", "R", "T", "L", "Q", "S", "P", "5"]
+2026-06-02 05:17:02.826 | INFO     | utils.cache_data:__collect_data:97 - 
+Writing Cache Data!
+2026-06-02 05:17:02.827 | INFO     | utils.cache_data:__collect_data:99 - 
+Cache Data Number is 6933
+2026-06-02 05:17:02.827 | INFO     | utils.cache_data:__collect_data:100 - 
+Writing Train and Val File.
+2026-06-02 05:17:02.831 | INFO     | utils.cache_data:__collect_data:117 - 
+Train Data Number is 6726
+2026-06-02 05:17:02.831 | INFO     | utils.cache_data:__collect_data:118 - 
+Val Data Number is 207
+(base) PS C:\Users\王正宏\Desktop\NTUST-CaptureCode-Bot> python app.py train NtustNewMailCaptcha                                                   
+2026-06-02 05:17:14.488 | INFO     | __main__:__init__:14 - 
+Hello baby~
+2026-06-02 05:17:14.490 | INFO     | __main__:train:28 - 
+Start Train ----> NtustNewMailCaptcha
+
+2026-06-02 05:17:14.493 | INFO     | utils.train:__init__:61 - 
+Taget:
+min_Accuracy: 0.98
+min_Epoch: 1
+max_Loss: 0.05
+2026-06-02 05:17:14.494 | INFO     | utils.train:__init__:66 - 
+USE GPU ----> 0
+2026-06-02 05:17:14.494 | INFO     | utils.train:__init__:73 - 
+Search for history checkpoints...
+C:\Users\王正宏\Desktop\NTUST-CaptureCode-Bot\nets\__init__.py:223: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  param = torch.load(path, map_location=device)
+2026-06-02 05:17:18.007 | INFO     | utils.train:__init__:107 - 
+Building Net...
+C:\Users\王正宏\.pyenv\pyenv-win\versions\3.11.9\Lib\site-packages\torch\nn\modules\rnn.py:123: UserWarning: dropout option adds dropout after all but last recurrent layer, so non-zero dropout expects num_layers greater than 1, but got dropout=0.3 and num_layers=1
+  warnings.warn(
+2026-06-02 05:17:18.068 | INFO     | utils.train:__init__:111 - Net(
+  (cnn): DdddOcr(
+    (cnn): Sequential(
+      (conv0): Conv2d(1, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (relu0): ReLU(inplace=True)
+      (pooling0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+      (conv1): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (relu1): ReLU(inplace=True)
+      (pooling1): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+      (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (batchnorm2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu2): ReLU(inplace=True)
+      (conv3): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (relu3): ReLU(inplace=True)
+      (pooling2): MaxPool2d(kernel_size=(2, 2), stride=(2, 1), padding=(0, 1), dilation=1, ceil_mode=False)
+      (conv4): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (batchnorm4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu4): ReLU(inplace=True)
+      (conv5): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (relu5): ReLU(inplace=True)
+      (pooling3): MaxPool2d(kernel_size=(2, 2), stride=(2, 1), padding=(0, 1), dilation=1, ceil_mode=False)
+      (conv6): Conv2d(64, 16, kernel_size=(2, 2), stride=(1, 1))
+      (batchnorm6): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu6): ReLU(inplace=True)
+    )
+  )
+  (lstm): LSTM(48, 48, dropout=0.3, bidirectional=True)
+  (loss): CTCLoss()
+  (fc): Linear(in_features=96, out_features=33, bias=True)
+)
+2026-06-02 05:17:18.068 | INFO     | utils.train:__init__:112 - 
+Building End
++---------------------------+------------+
+|          Modules          | Parameters |
++---------------------------+------------+
+|    cnn.cnn.conv0.weight   |    144     |
+|     cnn.cnn.conv0.bias    |     16     |
+|    cnn.cnn.conv1.weight   |    4608    |
+|     cnn.cnn.conv1.bias    |     32     |
+|    cnn.cnn.conv2.weight   |    9216    |
+|     cnn.cnn.conv2.bias    |     32     |
+| cnn.cnn.batchnorm2.weight |     32     |
+|  cnn.cnn.batchnorm2.bias  |     32     |
+|    cnn.cnn.conv3.weight   |    9216    |
+|     cnn.cnn.conv3.bias    |     32     |
+|    cnn.cnn.conv4.weight   |   18432    |
+|     cnn.cnn.conv4.bias    |     64     |
+| cnn.cnn.batchnorm4.weight |     64     |
+|  cnn.cnn.batchnorm4.bias  |     64     |
+|    cnn.cnn.conv5.weight   |   36864    |
+|     cnn.cnn.conv5.bias    |     64     |
+|    cnn.cnn.conv6.weight   |    4096    |
+|     cnn.cnn.conv6.bias    |     16     |
+| cnn.cnn.batchnorm6.weight |     16     |
+|  cnn.cnn.batchnorm6.bias  |     16     |
+|     lstm.weight_ih_l0     |    9216    |
+|     lstm.weight_hh_l0     |    9216    |
+|      lstm.bias_ih_l0      |    192     |
+|      lstm.bias_hh_l0      |    192     |
+| lstm.weight_ih_l0_reverse |    9216    |
+| lstm.weight_hh_l0_reverse |    9216    |
+|  lstm.bias_ih_l0_reverse  |    192     |
+|  lstm.bias_hh_l0_reverse  |    192     |
+|         fc.weight         |    3168    |
+|          fc.bias          |     33     |
++---------------------------+------------+
+Total Trainable Params: 123889
+2026-06-02 05:17:18.091 | INFO     | utils.train:__init__:118 - 
+Get Data Loader...
+2026-06-02 05:17:18.095 | INFO     | utils.load_cache:__init__:102 - 
+Charsets is [" ", "7", "E", "F", "A", "6", "4", "8", "N", "H", "2", "J", "X", "U", "V", "B", "C", "G", "3", "W", "D", "Z", "M", "Y", "K", "9", "R", "T", "L", "Q", "S", "P", "5"]
+2026-06-02 05:17:18.095 | INFO     | utils.load_cache:__init__:106 - 
+Image Resize is [-1, 64]
+2026-06-02 05:17:18.095 | INFO     | utils.load_cache:__init__:118 - 
+Image Path is .\projects\NtustNewMailCaptcha\images_set\images\
+2026-06-02 05:17:18.095 | INFO     | utils.load_cache:__init__:25 - 
+Reading Cache File... ----> C:\Users\王正宏\Desktop\NTUST-CaptureCode-Bot\projects\NtustNewMailCaptcha\cache\cache.train.tmp
+2026-06-02 05:17:18.097 | INFO     | utils.load_cache:__init__:30 - 
+Read Cache File End! Caches Num is 6726.
+2026-06-02 05:17:18.097 | INFO     | utils.load_cache:__init__:25 - 
+Reading Cache File... ----> C:\Users\王正宏\Desktop\NTUST-CaptureCode-Bot\projects\NtustNewMailCaptcha\cache\cache.val.tmp
+2026-06-02 05:17:18.097 | INFO     | utils.load_cache:__init__:30 - 
+Read Cache File End! Caches Num is 207.
+2026-06-02 05:17:18.098 | INFO     | utils.train:__init__:124 - 
+Get Data Loader End!
+current stop_count: 1
+2026-06-02 05:17:30.976 | INFO     | utils.train:start:223 - [2026-06-02-05_17_30]      Epoch: 92       Step: 9700      LastLoss: 3.7164664268493652    AvgLoss: 4.031100685596466      Lr: 0.005345746329947882        Acc: 0.0
+current stop_count: 2
+2026-06-02 05:17:37.451 | INFO     | utils.train:start:223 - [2026-06-02-05_17_37]      Epoch: 93       Step: 9800      LastLoss: 3.6617467403411865    AvgLoss: 3.6724865221977234     Lr: 0.005345746329947882        Acc: 0.0
+2026-06-02 05:17:43.841 | INFO     | utils.train:start:223 - [2026-06-02-05_17_43]      Epoch: 94       Step: 9900      LastLoss: 3.397554874420166     AvgLoss: 3.5474613761901854     Lr: 0.005345746329947882        Acc: 0.08996539792387544
+2026-06-02 05:17:50.226 | INFO     | utils.train:start:223 - [2026-06-02-05_17_50]      Epoch: 95       Step: 10000     LastLoss: 3.1583962440490723    AvgLoss: 3.2233718538284304     Lr: 0.005238831403348924        Acc: 0.1695501730103806
+2026-06-02 05:17:56.571 | INFO     | utils.train:start:223 - [2026-06-02-05_17_56]      Epoch: 96       Step: 10100     LastLoss: 2.9306328296661377    AvgLoss: 2.9767233610153196     Lr: 0.005238831403348924        Acc: 0.176056338028169
+2026-06-02 05:18:03.199 | INFO     | utils.train:start:223 - [2026-06-02-05_18_03]      Epoch: 97       Step: 10200     LastLoss: 2.8620219230651855    AvgLoss: 2.8689822602272033     Lr: 0.005238831403348924        Acc: 0.20640569395017794
+2026-06-02 05:18:10.016 | INFO     | utils.train:start:223 - [2026-06-02-05_18_09]      Epoch: 98       Step: 10300     LastLoss: 0.209048792719841     AvgLoss: 1.2317914590239525     Lr: 0.005134054775281945        Acc: 0.8517241379310345
+2026-06-02 05:18:16.681 | INFO     | utils.train:start:223 - [2026-06-02-05_18_16]      Epoch: 99       Step: 10400     LastLoss: 0.06755739450454712   AvgLoss: 0.11522144224494696    Lr: 0.005134054775281945        Acc: 0.9930555555555556
+current stop_count: 1
+2026-06-02 05:18:23.341 | INFO     | utils.train:start:223 - [2026-06-02-05_18_23]      Epoch: 100      Step: 10500     LastLoss: 0.039693690836429596  AvgLoss: 0.04946466272696853    Lr: 0.005134054775281945        Acc: 0.992831541218638
+2026-06-02 05:18:30.366 | INFO     | utils.train:start:223 - [2026-06-02-05_18_30]      Epoch: 101      Step: 10600     LastLoss: 0.023540468886494637  AvgLoss: 0.03563268002122641    Lr: 0.005031373679776306        Acc: 0.9964664310954063
+current stop_count: 1
+2026-06-02 05:18:37.061 | INFO     | utils.train:start:223 - [2026-06-02-05_18_36]      Epoch: 102      Step: 10700     LastLoss: 0.02841876819729805   AvgLoss: 0.025443288758397103   Lr: 0.005031373679776306        Acc: 0.9929824561403509
+current stop_count: 2
+2026-06-02 05:18:43.835 | INFO     | utils.train:start:223 - [2026-06-02-05_18_43]      Epoch: 103      Step: 10800     LastLoss: 0.014363514259457588  AvgLoss: 0.019207791704684497   Lr: 0.005031373679776306        Acc: 0.993103448275862
+2026-06-02 05:18:50.280 | INFO     | utils.train:start:223 - [2026-06-02-05_18_50]      Epoch: 104      Step: 10900     LastLoss: 0.016588816419243813  AvgLoss: 0.015288927992805838   Lr: 0.00493074620618078 Acc: 1.0
+current stop_count: 1
+2026-06-02 05:18:56.725 | INFO     | utils.train:start:223 - [2026-06-02-05_18_56]      Epoch: 105      Step: 11000     LastLoss: 0.013246946968138218  AvgLoss: 0.013446190133690835   Lr: 0.00493074620618078 Acc: 0.9896551724137931
+current stop_count: 2
+2026-06-02 05:19:03.361 | INFO     | utils.train:start:223 - [2026-06-02-05_19_03]      Epoch: 106      Step: 11100     LastLoss: 0.011759351938962936  AvgLoss: 0.012196766147390008   Lr: 0.00493074620618078 Acc: 0.9930555555555556
+current stop_count: 3
+2026-06-02 05:19:10.245 | INFO     | utils.train:start:223 - [2026-06-02-05_19_10]      Epoch: 107      Step: 11200     LastLoss: 0.011186196468770504  AvgLoss: 0.011239502718672157   Lr: 0.004832131282057164        Acc: 0.993006993006993
+current stop_count: 4
+2026-06-02 05:19:17.100 | INFO     | utils.train:start:223 - [2026-06-02-05_19_16]      Epoch: 108      Step: 11300     LastLoss: 0.009491841308772564  AvgLoss: 0.01050094493664801    Lr: 0.004832131282057164        Acc: 0.9965156794425087
+current stop_count: 5
+2026-06-02 05:19:23.757 | INFO     | utils.train:start:223 - [2026-06-02-05_19_23]      Epoch: 109      Step: 11400     LastLoss: 0.009257661178708076  AvgLoss: 0.009805212737992406   Lr: 0.004832131282057164        Acc: 0.993006993006993
+current stop_count: 6
+2026-06-02 05:19:30.446 | INFO     | utils.train:start:223 - [2026-06-02-05_19_30]      Epoch: 110      Step: 11500     LastLoss: 0.008791069500148296  AvgLoss: 0.009268537545576692   Lr: 0.004735488656416021        Acc: 0.9858156028368794
+current stop_count: 7
+2026-06-02 05:19:37.361 | INFO     | utils.train:start:223 - [2026-06-02-05_19_37]      Epoch: 111      Step: 11600     LastLoss: 0.007668293081223965  AvgLoss: 0.008831776096485555   Lr: 0.004735488656416021        Acc: 1.0
+current stop_count: 8
+2026-06-02 05:19:44.709 | INFO     | utils.train:start:223 - [2026-06-02-05_19_44]      Epoch: 111      Step: 11700     LastLoss: 0.007952229119837284  AvgLoss: 0.008384735379368067   Lr: 0.004735488656416021        Acc: 1.0
+current stop_count: 9
+2026-06-02 05:19:51.484 | INFO     | utils.train:start:223 - [2026-06-02-05_19_51]      Epoch: 112      Step: 11800     LastLoss: 0.007911495864391327  AvgLoss: 0.008055090485140682   Lr: 0.004640778883287701        Acc: 0.9964285714285714
+current stop_count: 10
+2026-06-02 05:19:58.173 | INFO     | utils.train:start:223 - [2026-06-02-05_19_58]      Epoch: 113      Step: 11900     LastLoss: 0.008303430862724781  AvgLoss: 0.007700278535485268   Lr: 0.004640778883287701        Acc: 0.9928571428571429
+current stop_count: 11
+2026-06-02 05:20:04.967 | INFO     | utils.train:start:223 - [2026-06-02-05_20_04]      Epoch: 114      Step: 12000     LastLoss: 0.007321869023144245  AvgLoss: 0.007467060820199549   Lr: 0.004640778883287701        Acc: 0.9932203389830508
+current stop_count: 12
+2026-06-02 05:20:12.320 | INFO     | utils.train:start:223 - [2026-06-02-05_20_12]      Epoch: 115      Step: 12100     LastLoss: 0.0072898524813354015 AvgLoss: 0.0071980568068102     Lr: 0.0045479633056219465       Acc: 0.9929577464788732
+current stop_count: 13
+2026-06-02 05:20:19.231 | INFO     | utils.train:start:223 - [2026-06-02-05_20_19]      Epoch: 116      Step: 12200     LastLoss: 0.006964412983506918  AvgLoss: 0.006979939937591553   Lr: 0.0045479633056219465       Acc: 0.9928825622775801
+current stop_count: 14
+2026-06-02 05:20:26.294 | INFO     | utils.train:start:223 - [2026-06-02-05_20_26]      Epoch: 117      Step: 12300     LastLoss: 0.00621839240193367   AvgLoss: 0.0067651716014370325  Lr: 0.0045479633056219465       Acc: 0.9965870307167235
+current stop_count: 15
+2026-06-02 05:20:33.075 | INFO     | utils.train:start:223 - [2026-06-02-05_20_32]      Epoch: 118      Step: 12400     LastLoss: 0.006571346428245306  AvgLoss: 0.0065743477828800675  Lr: 0.004457004039509507        Acc: 0.9964285714285714
+current stop_count: 16
+2026-06-02 05:20:39.950 | INFO     | utils.train:start:223 - [2026-06-02-05_20_39]      Epoch: 119      Step: 12500     LastLoss: 0.006169759202748537  AvgLoss: 0.006383527740836143   Lr: 0.004457004039509507        Acc: 0.9895470383275261
+current stop_count: 17
+2026-06-02 05:20:46.881 | INFO     | utils.train:start:223 - [2026-06-02-05_20_46]      Epoch: 120      Step: 12600     LastLoss: 0.006013033911585808  AvgLoss: 0.00616990499664098    Lr: 0.004457004039509507        Acc: 1.0
+current stop_count: 18
+2026-06-02 05:20:53.767 | INFO     | utils.train:start:223 - [2026-06-02-05_20_53]      Epoch: 121      Step: 12700     LastLoss: 0.005908358376473188  AvgLoss: 0.0060578668769449     Lr: 0.004367863958719317        Acc: 1.0
+current stop_count: 19
+2026-06-02 05:21:00.534 | INFO     | utils.train:start:223 - [2026-06-02-05_21_00]      Epoch: 122      Step: 12800     LastLoss: 0.005723114125430584  AvgLoss: 0.0059432432241737845  Lr: 0.004367863958719317        Acc: 0.9826989619377162
+current stop_count: 20
+2026-06-02 05:21:07.398 | INFO     | utils.train:start:223 - [2026-06-02-05_21_07]      Epoch: 123      Step: 12900     LastLoss: 0.005505644716322422  AvgLoss: 0.005752803133800626   Lr: 0.004367863958719317        Acc: 1.0
+current stop_count: 21
+2026-06-02 05:21:14.557 | INFO     | utils.train:start:223 - [2026-06-02-05_21_14]      Epoch: 124      Step: 13000     LastLoss: 0.005893871188163757  AvgLoss: 0.005656341202557087   Lr: 0.004280506679544931        Acc: 1.0
+current stop_count: 22
+2026-06-02 05:21:21.768 | INFO     | utils.train:start:223 - [2026-06-02-05_21_21]      Epoch: 125      Step: 13100     LastLoss: 0.005677346605807543  AvgLoss: 0.005523399747908116   Lr: 0.004280506679544931        Acc: 1.0
+current stop_count: 23
+2026-06-02 05:21:28.685 | INFO     | utils.train:start:223 - [2026-06-02-05_21_28]      Epoch: 126      Step: 13200     LastLoss: 0.005275288596749306  AvgLoss: 0.005383495418354869   Lr: 0.004280506679544931        Acc: 0.9895470383275261
+current stop_count: 24
+2026-06-02 05:21:35.266 | INFO     | utils.train:start:223 - [2026-06-02-05_21_35]      Epoch: 127      Step: 13300     LastLoss: 0.004944475367665291  AvgLoss: 0.005297299567610025   Lr: 0.004194896545954032        Acc: 1.0
+current stop_count: 25
+2026-06-02 05:21:41.783 | INFO     | utils.train:start:223 - [2026-06-02-05_21_41]      Epoch: 128      Step: 13400     LastLoss: 0.004792528692632914  AvgLoss: 0.005209506596438587   Lr: 0.004194896545954032        Acc: 0.9930795847750865
+current stop_count: 26
+2026-06-02 05:21:48.418 | INFO     | utils.train:start:223 - [2026-06-02-05_21_48]      Epoch: 129      Step: 13500     LastLoss: 0.005217093974351883  AvgLoss: 0.005112567539326846   Lr: 0.004194896545954032        Acc: 1.0
+current stop_count: 27
+2026-06-02 05:21:55.032 | INFO     | utils.train:start:223 - [2026-06-02-05_21_54]      Epoch: 130      Step: 13600     LastLoss: 0.005159176420420408  AvgLoss: 0.005016652215272188   Lr: 0.004110998615034951        Acc: 0.9964285714285714
+current stop_count: 28
+2026-06-02 05:22:01.635 | INFO     | utils.train:start:223 - [2026-06-02-05_22_01]      Epoch: 131      Step: 13700     LastLoss: 0.00488316360861063   AvgLoss: 0.004924816256389022   Lr: 0.004110998615034951        Acc: 0.9965397923875432
+current stop_count: 29
+2026-06-02 05:22:08.250 | INFO     | utils.train:start:223 - [2026-06-02-05_22_08]      Epoch: 131      Step: 13800     LastLoss: 0.00472541619092226   AvgLoss: 0.004844336365349591   Lr: 0.004110998615034951        Acc: 1.0
+current stop_count: 30
+2026-06-02 05:22:14.706 | INFO     | utils.train:start:223 - [2026-06-02-05_22_14]      Epoch: 132      Step: 13900     LastLoss: 0.00479344604536891   AvgLoss: 0.004776569046080112   Lr: 0.004028778642734252        Acc: 0.9930313588850174
+current stop_count: 31
+2026-06-02 05:22:21.134 | INFO     | utils.train:start:223 - [2026-06-02-05_22_20]      Epoch: 133      Step: 14000     LastLoss: 0.005209101364016533  AvgLoss: 0.004695556098595261   Lr: 0.004028778642734252        Acc: 1.0
+current stop_count: 32
+2026-06-02 05:22:27.651 | INFO     | utils.train:start:223 - [2026-06-02-05_22_27]      Epoch: 134      Step: 14100     LastLoss: 0.004435837268829346  AvgLoss: 0.004605734390206635   Lr: 0.004028778642734252        Acc: 0.9965034965034965
+current stop_count: 33
+2026-06-02 05:22:34.248 | INFO     | utils.train:start:223 - [2026-06-02-05_22_34]      Epoch: 135      Step: 14200     LastLoss: 0.004411063622683287  AvgLoss: 0.004544886169023812   Lr: 0.003948203069879567        Acc: 1.0
+current stop_count: 34
+2026-06-02 05:22:40.826 | INFO     | utils.train:start:223 - [2026-06-02-05_22_40]      Epoch: 136      Step: 14300     LastLoss: 0.004214653745293617  AvgLoss: 0.004489350519143045   Lr: 0.003948203069879567        Acc: 0.9929078014184397
+current stop_count: 35
+2026-06-02 05:22:47.479 | INFO     | utils.train:start:223 - [2026-06-02-05_22_47]      Epoch: 137      Step: 14400     LastLoss: 0.004200913943350315  AvgLoss: 0.004400041000917554   Lr: 0.003948203069879567        Acc: 0.996551724137931
+current stop_count: 36
+2026-06-02 05:22:54.047 | INFO     | utils.train:start:223 - [2026-06-02-05_22_53]      Epoch: 138      Step: 14500     LastLoss: 0.004375727381557226  AvgLoss: 0.004366104733198881   Lr: 0.003869239008481976        Acc: 1.0
+current stop_count: 37
+2026-06-02 05:23:00.797 | INFO     | utils.train:start:223 - [2026-06-02-05_23_00]      Epoch: 139      Step: 14600     LastLoss: 0.004366057459264994  AvgLoss: 0.004310979240108282   Lr: 0.003869239008481976        Acc: 0.9964539007092199
+current stop_count: 38
+2026-06-02 05:23:07.827 | INFO     | utils.train:start:223 - [2026-06-02-05_23_07]      Epoch: 140      Step: 14700     LastLoss: 0.004116888623684645  AvgLoss: 0.004223327285144478   Lr: 0.003869239008481976        Acc: 0.9930555555555556
+current stop_count: 39
+2026-06-02 05:23:14.296 | INFO     | utils.train:start:223 - [2026-06-02-05_23_14]      Epoch: 141      Step: 14800     LastLoss: 0.004191717132925987  AvgLoss: 0.004174174934159964   Lr: 0.0037918542283123364       Acc: 0.9929577464788732
+current stop_count: 40
+2026-06-02 05:23:20.827 | INFO     | utils.train:start:223 - [2026-06-02-05_23_20]      Epoch: 142      Step: 14900     LastLoss: 0.004422086291015148  AvgLoss: 0.004149477365426719   Lr: 0.0037918542283123364       Acc: 0.9929824561403509
+current stop_count: 41
+2026-06-02 05:23:27.637 | INFO     | utils.train:start:223 - [2026-06-02-05_23_27]      Epoch: 143      Step: 15000     LastLoss: 0.004212111234664917  AvgLoss: 0.004083896344527602   Lr: 0.0037918542283123364       Acc: 1.0
+current stop_count: 42
+2026-06-02 05:23:34.142 | INFO     | utils.train:start:223 - [2026-06-02-05_23_33]      Epoch: 144      Step: 15100     LastLoss: 0.0037111095152795315 AvgLoss: 0.004037248131353408   Lr: 0.0037160171437460895       Acc: 0.996551724137931
+current stop_count: 43
+2026-06-02 05:23:40.775 | INFO     | utils.train:start:223 - [2026-06-02-05_23_40]      Epoch: 145      Step: 15200     LastLoss: 0.003806309774518013  AvgLoss: 0.003995139803737402   Lr: 0.0037160171437460895       Acc: 1.0
+current stop_count: 44
+2026-06-02 05:23:47.234 | INFO     | utils.train:start:223 - [2026-06-02-05_23_47]      Epoch: 146      Step: 15300     LastLoss: 0.0037612877786159515 AvgLoss: 0.003963009568396955   Lr: 0.0037160171437460895       Acc: 0.9929328621908127
+current stop_count: 45
+2026-06-02 05:23:53.649 | INFO     | utils.train:start:223 - [2026-06-02-05_23_53]      Epoch: 147      Step: 15400     LastLoss: 0.0036758892238140106 AvgLoss: 0.003877595206722617   Lr: 0.003641696800871168        Acc: 0.9894736842105263
+current stop_count: 46
+2026-06-02 05:24:00.065 | INFO     | utils.train:start:223 - [2026-06-02-05_23_59]      Epoch: 148      Step: 15500     LastLoss: 0.003687795717269182  AvgLoss: 0.0038598030526191     Lr: 0.003641696800871168        Acc: 1.0
+current stop_count: 47
+2026-06-02 05:24:06.554 | INFO     | utils.train:start:223 - [2026-06-02-05_24_06]      Epoch: 149      Step: 15600     LastLoss: 0.0038792912382632494 AvgLoss: 0.003819213251117617   Lr: 0.003641696800871168        Acc: 0.9964788732394366
+current stop_count: 48
+2026-06-02 05:24:13.020 | INFO     | utils.train:start:223 - [2026-06-02-05_24_12]      Epoch: 150      Step: 15700     LastLoss: 0.0038408134132623672 AvgLoss: 0.003795916794333607   Lr: 0.0035688628648537445       Acc: 0.9964539007092199
+current stop_count: 49
+2026-06-02 05:24:19.525 | INFO     | utils.train:start:223 - [2026-06-02-05_24_19]      Epoch: 151      Step: 15800     LastLoss: 0.0037922654300928116 AvgLoss: 0.0037313639279454944  Lr: 0.0035688628648537445       Acc: 0.9965034965034965
+current stop_count: 50
+-------going to stop early!!!--------
+2026-06-02 05:24:25.960 | INFO     | utils.train:start:223 - [2026-06-02-05_24_25]      Epoch: 151      Step: 15900     LastLoss: 0.0035362495109438896 AvgLoss: 0.0036953629250638187  Lr: 0.0035688628648537445       Acc: 0.9930555555555556
+2026-06-02 05:24:25.961 | INFO     | utils.train:start:230 - 
+Training Finished!Exporting Model...
+C:\Users\王正宏\.pyenv\pyenv-win\versions\3.11.9\Lib\site-packages\torch\onnx\symbolic_opset9.py:4279: UserWarning: Exporting a model to ONNX with a batch_size other than 1, with a variable length with LSTM can cause an error when running the ONNX model with a different batch size. Make sure to save the model with a batch size of 1, or define the initial states (h0/c0) as inputs of the model. 
+  warnings.warn(
+2026-06-02 05:24:26.360 | INFO     | utils.train:start:246 - 
+Export Finished!Using Time: 7.116666666666666min

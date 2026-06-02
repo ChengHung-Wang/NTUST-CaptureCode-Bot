@@ -1,0 +1,23 @@
+Model:
+    CharSet: [' ', '4', '8', '6', '0', '9', '5', '2', '3', '1', '7']
+    ImageChannel: 3
+    ImageHeight: 64
+    ImageWidth: -1
+    Word: false
+System:
+    Allow_Ext: [jpg, jpeg, png, bmp]
+    GPU: true
+    GPU_ID: 0
+    Path: .\projects\NtustCourseJudge\images_set\original
+    Project: NtustCourseJudge
+    Val: 0.03
+Train:
+    BATCH_SIZE: 64
+    CNN: {NAME: ddddocr}
+    DROPOUT: 0.3
+    LR: 0.01
+    OPTIMIZER: SGD
+    SAVE_CHECKPOINTS_STEP: 300
+    TARGET: {Accuracy: 0.97, Cost: 0.05, Epoch: 1}
+    TEST_BATCH_SIZE: 64
+    TEST_STEP: 300

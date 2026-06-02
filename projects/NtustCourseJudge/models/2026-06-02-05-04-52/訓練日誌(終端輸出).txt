@@ -1,0 +1,483 @@
+(base) PS C:\Users\王正宏\Desktop\NTUST-CaptureCode-Bot> python3 app.py cache NtustCourseJudge .\projects\NtustCourseJudge\images_set\images\
+2026-06-02 04:36:15.116 | INFO     | __main__:__init__:14 - 
+Hello baby~
+2026-06-02 04:36:15.117 | INFO     | __main__:cache:22 - 
+Caching Data ----> NtustCourseJudge
+Path ----> .\projects\NtustCourseJudge\images_set\images\
+2026-06-02 04:36:15.120 | INFO     | utils.cache_data:__get_label_from_name:36 - 
+Files number is 9556.
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 9556/9556 [00:00<00:00, 1795250.78it/s]
+2026-06-02 04:36:15.138 | INFO     | utils.cache_data:__collect_data:93 - 
+Coolect labels is [" ", "9", "7", "8", "2", "0", "6", "4", "1", "3", "5"]
+2026-06-02 04:36:15.145 | INFO     | utils.cache_data:__collect_data:97 - 
+Writing Cache Data!
+2026-06-02 04:36:15.145 | INFO     | utils.cache_data:__collect_data:99 - 
+Cache Data Number is 9556
+2026-06-02 04:36:15.146 | INFO     | utils.cache_data:__collect_data:100 - 
+Writing Train and Val File.
+2026-06-02 04:36:15.152 | INFO     | utils.cache_data:__collect_data:117 - 
+Train Data Number is 9270
+2026-06-02 04:36:15.152 | INFO     | utils.cache_data:__collect_data:118 - 
+Val Data Number is 286
+(base) PS C:\Users\王正宏\Desktop\NTUST-CaptureCode-Bot> python3 .\app.py train NtustCourseJudge                                             
+2026-06-02 04:36:34.720 | INFO     | __main__:__init__:14 - 
+Hello baby~
+2026-06-02 04:36:34.720 | INFO     | __main__:train:28 - 
+Start Train ----> NtustCourseJudge
+
+2026-06-02 04:36:34.732 | INFO     | utils.train:__init__:61 - 
+Taget:
+min_Accuracy: 0.97
+min_Epoch: 1
+max_Loss: 0.05
+2026-06-02 04:36:34.732 | INFO     | utils.train:__init__:66 - 
+USE GPU ----> 0
+2026-06-02 04:36:34.733 | INFO     | utils.train:__init__:73 - 
+Search for history checkpoints...
+2026-06-02 04:36:34.733 | INFO     | utils.train:__init__:105 - 
+Empty history checkpoints
+2026-06-02 04:36:34.733 | INFO     | utils.train:__init__:107 - 
+Building Net...
+C:\Users\王正宏\.pyenv\pyenv-win\versions\3.11.9\Lib\site-packages\torch\nn\modules\rnn.py:123: UserWarning: dropout option adds dropout after all but last recurrent layer, so non-zero dropout expects num_layers greater than 1, but got dropout=0.3 and num_layers=1
+  warnings.warn(
+2026-06-02 04:36:34.744 | INFO     | utils.train:__init__:111 - Net(
+  (cnn): DdddOcr(
+    (cnn): Sequential(
+      (conv0): Conv2d(1, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (relu0): ReLU(inplace=True)
+      (pooling0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+      (conv1): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (relu1): ReLU(inplace=True)
+      (pooling1): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+      (conv2): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (batchnorm2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu2): ReLU(inplace=True)
+      (conv3): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (relu3): ReLU(inplace=True)
+      (pooling2): MaxPool2d(kernel_size=(2, 2), stride=(2, 1), padding=(0, 1), dilation=1, ceil_mode=False)
+      (conv4): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (batchnorm4): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu4): ReLU(inplace=True)
+      (conv5): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (relu5): ReLU(inplace=True)
+      (pooling3): MaxPool2d(kernel_size=(2, 2), stride=(2, 1), padding=(0, 1), dilation=1, ceil_mode=False)
+      (conv6): Conv2d(64, 16, kernel_size=(2, 2), stride=(1, 1))
+      (batchnorm6): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu6): ReLU(inplace=True)
+    )
+  )
+  (lstm): LSTM(48, 48, dropout=0.3, bidirectional=True)
+  (loss): CTCLoss()
+  (fc): Linear(in_features=96, out_features=11, bias=True)
+)
+2026-06-02 04:36:34.744 | INFO     | utils.train:__init__:112 - 
+Building End
++---------------------------+------------+
+|          Modules          | Parameters |
++---------------------------+------------+
+|    cnn.cnn.conv0.weight   |    144     |
+|     cnn.cnn.conv0.bias    |     16     |
+|    cnn.cnn.conv1.weight   |    4608    |
+|     cnn.cnn.conv1.bias    |     32     |
+|    cnn.cnn.conv2.weight   |    9216    |
+|     cnn.cnn.conv2.bias    |     32     |
+| cnn.cnn.batchnorm2.weight |     32     |
+|  cnn.cnn.batchnorm2.bias  |     32     |
+|    cnn.cnn.conv3.weight   |    9216    |
+|     cnn.cnn.conv3.bias    |     32     |
+|    cnn.cnn.conv4.weight   |   18432    |
+|     cnn.cnn.conv4.bias    |     64     |
+| cnn.cnn.batchnorm4.weight |     64     |
+|  cnn.cnn.batchnorm4.bias  |     64     |
+|    cnn.cnn.conv5.weight   |   36864    |
+|     cnn.cnn.conv5.bias    |     64     |
+|    cnn.cnn.conv6.weight   |    4096    |
+|     cnn.cnn.conv6.bias    |     16     |
+| cnn.cnn.batchnorm6.weight |     16     |
+|  cnn.cnn.batchnorm6.bias  |     16     |
+|     lstm.weight_ih_l0     |    9216    |
+|     lstm.weight_hh_l0     |    9216    |
+|      lstm.bias_ih_l0      |    192     |
+|      lstm.bias_hh_l0      |    192     |
+| lstm.weight_ih_l0_reverse |    9216    |
+| lstm.weight_hh_l0_reverse |    9216    |
+|  lstm.bias_ih_l0_reverse  |    192     |
+|  lstm.bias_hh_l0_reverse  |    192     |
+|         fc.weight         |    1056    |
+|          fc.bias          |     11     |
++---------------------------+------------+
+Total Trainable Params: 121755
+2026-06-02 04:36:35.810 | INFO     | utils.train:__init__:118 - 
+Get Data Loader...
+2026-06-02 04:36:35.813 | INFO     | utils.load_cache:__init__:102 - 
+Charsets is [" ", "9", "7", "8", "2", "0", "6", "4", "1", "3", "5"]
+2026-06-02 04:36:35.813 | INFO     | utils.load_cache:__init__:106 - 
+Image Resize is [-1, 64]
+2026-06-02 04:36:35.813 | INFO     | utils.load_cache:__init__:118 - 
+Image Path is .\projects\NtustCourseJudge\images_set\images\
+2026-06-02 04:36:35.813 | INFO     | utils.load_cache:__init__:25 - 
+Reading Cache File... ----> C:\Users\王正宏\Desktop\NTUST-CaptureCode-Bot\projects\NtustCourseJudge\cache\cache.train.tmp
+2026-06-02 04:36:35.813 | INFO     | utils.load_cache:__init__:30 - 
+Read Cache File End! Caches Num is 9270.
+2026-06-02 04:36:35.813 | INFO     | utils.load_cache:__init__:25 - 
+Reading Cache File... ----> C:\Users\王正宏\Desktop\NTUST-CaptureCode-Bot\projects\NtustCourseJudge\cache\cache.val.tmp
+2026-06-02 04:36:35.813 | INFO     | utils.load_cache:__init__:30 - 
+Read Cache File End! Caches Num is 286.
+2026-06-02 04:36:35.813 | INFO     | utils.train:__init__:124 - 
+Get Data Loader End!
+2026-06-02 04:36:42.791 | INFO     | utils.train:start:153 - [2026-06-02-04_36_42]      Epoch: 0        Step: 100       LastLoss: 2.6796865463256836    AvgLoss: 3.3467658066749575     Lr: 0.01
+2026-06-02 04:36:49.426 | INFO     | utils.train:start:153 - [2026-06-02-04_36_49]      Epoch: 1        Step: 200       LastLoss: 2.6824259757995605    AvgLoss: 2.6833531045913697     Lr: 0.01
+current stop_count: 1
+2026-06-02 04:36:56.202 | INFO     | utils.train:start:223 - [2026-06-02-04_36_56]      Epoch: 2        Step: 300       LastLoss: 2.6804261207580566    AvgLoss: 2.6818694496154785     Lr: 0.01        Acc: 0.0
+2026-06-02 04:37:02.826 | INFO     | utils.train:start:153 - [2026-06-02-04_37_02]      Epoch: 2        Step: 400       LastLoss: 2.689525604248047     AvgLoss: 2.680990357398987      Lr: 0.0098
+2026-06-02 04:37:09.461 | INFO     | utils.train:start:153 - [2026-06-02-04_37_09]      Epoch: 3        Step: 500       LastLoss: 2.6768884658813477    AvgLoss: 2.6790496373176573     Lr: 0.0098
+current stop_count: 2
+2026-06-02 04:37:16.305 | INFO     | utils.train:start:223 - [2026-06-02-04_37_16]      Epoch: 4        Step: 600       LastLoss: 2.6815927028656006    AvgLoss: 2.67854305267334       Lr: 0.0098      Acc: 0.0
+2026-06-02 04:37:23.008 | INFO     | utils.train:start:153 - [2026-06-02-04_37_22]      Epoch: 4        Step: 700       LastLoss: 2.673382520675659     AvgLoss: 2.6758953380584716     Lr: 0.009604
+2026-06-02 04:37:29.739 | INFO     | utils.train:start:153 - [2026-06-02-04_37_29]      Epoch: 5        Step: 800       LastLoss: 2.673098087310791     AvgLoss: 2.673096811771393      Lr: 0.009604
+current stop_count: 3
+2026-06-02 04:37:36.633 | INFO     | utils.train:start:223 - [2026-06-02-04_37_36]      Epoch: 6        Step: 900       LastLoss: 2.6696133613586426    AvgLoss: 2.664999086856842      Lr: 0.009604    Acc: 0.0
+2026-06-02 04:37:43.582 | INFO     | utils.train:start:153 - [2026-06-02-04_37_43]      Epoch: 6        Step: 1000      LastLoss: 2.6685659885406494    AvgLoss: 2.6452552390098574     Lr: 0.009411919999999999
+2026-06-02 04:37:50.790 | INFO     | utils.train:start:153 - [2026-06-02-04_37_50]      Epoch: 7        Step: 1100      LastLoss: 2.610478162765503     AvgLoss: 2.63047043800354       Lr: 0.009411919999999999
+current stop_count: 4
+2026-06-02 04:37:58.282 | INFO     | utils.train:start:223 - [2026-06-02-04_37_58]      Epoch: 8        Step: 1200      LastLoss: 2.615837812423706     AvgLoss: 2.6213232898712158     Lr: 0.009411919999999999        Acc: 0.0
+2026-06-02 04:38:05.298 | INFO     | utils.train:start:153 - [2026-06-02-04_38_05]      Epoch: 9        Step: 1300      LastLoss: 2.6398792266845703    AvgLoss: 2.614690170288086      Lr: 0.009223681599999999
+2026-06-02 04:38:12.186 | INFO     | utils.train:start:153 - [2026-06-02-04_38_12]      Epoch: 9        Step: 1400      LastLoss: 2.6410698890686035    AvgLoss: 2.6142029428482054     Lr: 0.009223681599999999
+current stop_count: 5
+2026-06-02 04:38:19.230 | INFO     | utils.train:start:223 - [2026-06-02-04_38_19]      Epoch: 10       Step: 1500      LastLoss: 2.6439597606658936    AvgLoss: 2.6050705432891847     Lr: 0.009223681599999999        Acc: 0.0
+2026-06-02 04:38:26.045 | INFO     | utils.train:start:153 - [2026-06-02-04_38_26]      Epoch: 11       Step: 1600      LastLoss: 2.620204448699951     AvgLoss: 2.612812666893005      Lr: 0.009039207967999998
+2026-06-02 04:38:32.946 | INFO     | utils.train:start:153 - [2026-06-02-04_38_32]      Epoch: 11       Step: 1700      LastLoss: 2.6098952293395996    AvgLoss: 2.606826357841492      Lr: 0.009039207967999998
+current stop_count: 6
+2026-06-02 04:38:40.055 | INFO     | utils.train:start:223 - [2026-06-02-04_38_39]      Epoch: 12       Step: 1800      LastLoss: 2.580502986907959     AvgLoss: 2.5975751733779906     Lr: 0.009039207967999998        Acc: 0.0
+2026-06-02 04:38:46.926 | INFO     | utils.train:start:153 - [2026-06-02-04_38_46]      Epoch: 13       Step: 1900      LastLoss: 2.602799654006958     AvgLoss: 2.6003505611419677     Lr: 0.008858423808639998
+2026-06-02 04:38:53.811 | INFO     | utils.train:start:153 - [2026-06-02-04_38_53]      Epoch: 13       Step: 2000      LastLoss: 2.5378952026367188    AvgLoss: 2.5977048516273498     Lr: 0.008858423808639998
+current stop_count: 7
+2026-06-02 04:39:00.824 | INFO     | utils.train:start:223 - [2026-06-02-04_39_00]      Epoch: 14       Step: 2100      LastLoss: 2.5908055305480957    AvgLoss: 2.592009644508362      Lr: 0.008858423808639998        Acc: 0.0
+2026-06-02 04:39:07.597 | INFO     | utils.train:start:153 - [2026-06-02-04_39_07]      Epoch: 15       Step: 2200      LastLoss: 2.666712760925293     AvgLoss: 2.592130596637726      Lr: 0.008681255332467197
+2026-06-02 04:39:14.396 | INFO     | utils.train:start:153 - [2026-06-02-04_39_14]      Epoch: 15       Step: 2300      LastLoss: 2.600060224533081     AvgLoss: 2.589176638126373      Lr: 0.008681255332467197
+2026-06-02 04:39:21.456 | INFO     | utils.train:start:223 - [2026-06-02-04_39_21]      Epoch: 16       Step: 2400      LastLoss: 2.576794147491455     AvgLoss: 2.5739481401443483     Lr: 0.008681255332467197        Acc: 0.03515625
+2026-06-02 04:39:28.258 | INFO     | utils.train:start:153 - [2026-06-02-04_39_28]      Epoch: 17       Step: 2500      LastLoss: 2.585249662399292     AvgLoss: 2.551756749153137      Lr: 0.008507630225817853
+2026-06-02 04:39:35.817 | INFO     | utils.train:start:153 - [2026-06-02-04_39_35]      Epoch: 18       Step: 2600      LastLoss: 2.485936403274536     AvgLoss: 2.543977906703949      Lr: 0.008507630225817853
+current stop_count: 1
+2026-06-02 04:39:43.345 | INFO     | utils.train:start:223 - [2026-06-02-04_39_43]      Epoch: 18       Step: 2700      LastLoss: 2.490569591522217     AvgLoss: 2.5477648782730102     Lr: 0.008507630225817853        Acc: 0.0234375
+2026-06-02 04:39:50.489 | INFO     | utils.train:start:153 - [2026-06-02-04_39_50]      Epoch: 19       Step: 2800      LastLoss: 2.499001979827881     AvgLoss: 2.536643147468567      Lr: 0.008337477621301496
+2026-06-02 04:39:58.707 | INFO     | utils.train:start:153 - [2026-06-02-04_39_58]      Epoch: 20       Step: 2900      LastLoss: 2.598768949508667     AvgLoss: 2.5322725129127504     Lr: 0.008337477621301496
+2026-06-02 04:40:05.688 | INFO     | utils.train:start:223 - [2026-06-02-04_40_05]      Epoch: 20       Step: 3000      LastLoss: 2.464343547821045     AvgLoss: 2.521006920337677      Lr: 0.008337477621301496        Acc: 0.07421875
+2026-06-02 04:40:12.474 | INFO     | utils.train:start:153 - [2026-06-02-04_40_12]      Epoch: 21       Step: 3100      LastLoss: 2.539881944656372     AvgLoss: 2.5080356121063234     Lr: 0.008170728068875466
+2026-06-02 04:40:19.961 | INFO     | utils.train:start:153 - [2026-06-02-04_40_19]      Epoch: 22       Step: 3200      LastLoss: 2.4908416271209717    AvgLoss: 2.5093627047538756     Lr: 0.008170728068875466
+2026-06-02 04:40:27.237 | INFO     | utils.train:start:223 - [2026-06-02-04_40_26]      Epoch: 22       Step: 3300      LastLoss: 2.5204687118530273    AvgLoss: 2.5053619599342345     Lr: 0.008170728068875466        Acc: 0.0859375
+2026-06-02 04:40:34.385 | INFO     | utils.train:start:153 - [2026-06-02-04_40_34]      Epoch: 23       Step: 3400      LastLoss: 2.4906938076019287    AvgLoss: 2.490926649570465      Lr: 0.008007313507497957
+2026-06-02 04:40:42.354 | INFO     | utils.train:start:153 - [2026-06-02-04_40_42]      Epoch: 24       Step: 3500      LastLoss: 2.467167377471924     AvgLoss: 2.476702079772949      Lr: 0.008007313507497957
+current stop_count: 1
+2026-06-02 04:40:50.586 | INFO     | utils.train:start:223 - [2026-06-02-04_40_50]      Epoch: 24       Step: 3600      LastLoss: 2.4173426628112793    AvgLoss: 2.45002587556839       Lr: 0.008007313507497957        Acc: 0.0546875
+2026-06-02 04:40:58.070 | INFO     | utils.train:start:153 - [2026-06-02-04_40_58]      Epoch: 25       Step: 3700      LastLoss: 2.4411377906799316    AvgLoss: 2.4345988416671753     Lr: 0.007847167237347998
+2026-06-02 04:41:05.088 | INFO     | utils.train:start:153 - [2026-06-02-04_41_05]      Epoch: 26       Step: 3800      LastLoss: 2.3962488174438477    AvgLoss: 2.4250318384170533     Lr: 0.007847167237347998
+current stop_count: 2
+2026-06-02 04:41:12.772 | INFO     | utils.train:start:223 - [2026-06-02-04_41_12]      Epoch: 27       Step: 3900      LastLoss: 2.4504106044769287    AvgLoss: 2.420266010761261      Lr: 0.007847167237347998        Acc: 0.078125
+2026-06-02 04:41:19.879 | INFO     | utils.train:start:153 - [2026-06-02-04_41_19]      Epoch: 27       Step: 4000      LastLoss: 2.4493937492370605    AvgLoss: 2.419894094467163      Lr: 0.007690223892601038
+2026-06-02 04:41:27.208 | INFO     | utils.train:start:153 - [2026-06-02-04_41_27]      Epoch: 28       Step: 4100      LastLoss: 2.389141798019409     AvgLoss: 2.414651861190796      Lr: 0.007690223892601038
+current stop_count: 3
+2026-06-02 04:41:34.382 | INFO     | utils.train:start:223 - [2026-06-02-04_41_34]      Epoch: 29       Step: 4200      LastLoss: 2.4138660430908203    AvgLoss: 2.416190676689148      Lr: 0.007690223892601038        Acc: 0.07421875
+2026-06-02 04:41:41.739 | INFO     | utils.train:start:153 - [2026-06-02-04_41_41]      Epoch: 29       Step: 4300      LastLoss: 2.4196488857269287    AvgLoss: 2.413468289375305      Lr: 0.007536419414749017
+2026-06-02 04:41:48.838 | INFO     | utils.train:start:153 - [2026-06-02-04_41_48]      Epoch: 30       Step: 4400      LastLoss: 2.3815174102783203    AvgLoss: 2.410512328147888      Lr: 0.007536419414749017
+2026-06-02 04:41:56.402 | INFO     | utils.train:start:223 - [2026-06-02-04_41_56]      Epoch: 31       Step: 4500      LastLoss: 2.3817660808563232    AvgLoss: 2.4135295128822327     Lr: 0.007536419414749017        Acc: 0.12109375
+2026-06-02 04:42:03.780 | INFO     | utils.train:start:153 - [2026-06-02-04_42_03]      Epoch: 31       Step: 4600      LastLoss: 2.3814010620117188    AvgLoss: 2.4066656947135927     Lr: 0.007385691026454037
+2026-06-02 04:42:11.673 | INFO     | utils.train:start:153 - [2026-06-02-04_42_11]      Epoch: 32       Step: 4700      LastLoss: 2.3739981651306152    AvgLoss: 2.39997713804245       Lr: 0.007385691026454037
+current stop_count: 1
+2026-06-02 04:42:20.594 | INFO     | utils.train:start:223 - [2026-06-02-04_42_20]      Epoch: 33       Step: 4800      LastLoss: 2.381991386413574     AvgLoss: 2.401822044849396      Lr: 0.007385691026454037        Acc: 0.08203125
+2026-06-02 04:42:29.077 | INFO     | utils.train:start:153 - [2026-06-02-04_42_29]      Epoch: 34       Step: 4900      LastLoss: 2.3824214935302734    AvgLoss: 2.4001166725158694     Lr: 0.0072379772059249555
+2026-06-02 04:42:37.324 | INFO     | utils.train:start:153 - [2026-06-02-04_42_37]      Epoch: 34       Step: 5000      LastLoss: 2.39725661277771      AvgLoss: 2.39515709400177       Lr: 0.0072379772059249555
+current stop_count: 2
+2026-06-02 04:42:45.223 | INFO     | utils.train:start:223 - [2026-06-02-04_42_44]      Epoch: 35       Step: 5100      LastLoss: 2.358480215072632     AvgLoss: 2.390095880031586      Lr: 0.0072379772059249555       Acc: 0.1015625
+2026-06-02 04:42:53.000 | INFO     | utils.train:start:153 - [2026-06-02-04_42_52]      Epoch: 36       Step: 5200      LastLoss: 2.3514206409454346    AvgLoss: 2.3778636622428895     Lr: 0.007093217661806457
+2026-06-02 04:43:01.383 | INFO     | utils.train:start:153 - [2026-06-02-04_43_01]      Epoch: 36       Step: 5300      LastLoss: 2.3766772747039795    AvgLoss: 2.376827104091644      Lr: 0.007093217661806457
+current stop_count: 3
+2026-06-02 04:43:09.766 | INFO     | utils.train:start:223 - [2026-06-02-04_43_09]      Epoch: 37       Step: 5400      LastLoss: 2.368952989578247     AvgLoss: 2.3695729398727416     Lr: 0.007093217661806457        Acc: 0.08984375
+2026-06-02 04:43:19.350 | INFO     | utils.train:start:153 - [2026-06-02-04_43_19]      Epoch: 38       Step: 5500      LastLoss: 1.9406776428222656    AvgLoss: 2.2790411567687987     Lr: 0.006951353308570328
+2026-06-02 04:43:26.448 | INFO     | utils.train:start:153 - [2026-06-02-04_43_26]      Epoch: 38       Step: 5600      LastLoss: 1.666459321975708     AvgLoss: 1.7867694258689881     Lr: 0.006951353308570328
+2026-06-02 04:43:33.435 | INFO     | utils.train:start:223 - [2026-06-02-04_43_33]      Epoch: 39       Step: 5700      LastLoss: 1.4962494373321533    AvgLoss: 1.5765400874614715     Lr: 0.006951353308570328        Acc: 0.51171875
+2026-06-02 04:43:40.423 | INFO     | utils.train:start:153 - [2026-06-02-04_43_40]      Epoch: 40       Step: 5800      LastLoss: 1.4121239185333252    AvgLoss: 1.4521836352348327     Lr: 0.006812326242398921
+2026-06-02 04:43:47.753 | INFO     | utils.train:start:153 - [2026-06-02-04_43_47]      Epoch: 40       Step: 5900      LastLoss: 1.3000481128692627    AvgLoss: 1.35502103805542       Lr: 0.006812326242398921
+2026-06-02 04:43:55.602 | INFO     | utils.train:start:223 - [2026-06-02-04_43_55]      Epoch: 41       Step: 6000      LastLoss: 1.1717168092727661    AvgLoss: 1.2361856925487518     Lr: 0.006812326242398921        Acc: 0.57421875
+2026-06-02 04:44:04.006 | INFO     | utils.train:start:153 - [2026-06-02-04_44_03]      Epoch: 42       Step: 6100      LastLoss: 1.0331580638885498    AvgLoss: 1.0979865789413452     Lr: 0.006676079717550942
+2026-06-02 04:44:12.060 | INFO     | utils.train:start:153 - [2026-06-02-04_44_12]      Epoch: 43       Step: 6200      LastLoss: 0.8632664680480957    AvgLoss: 0.9379588347673417     Lr: 0.006676079717550942
+2026-06-02 04:44:21.134 | INFO     | utils.train:start:223 - [2026-06-02-04_44_20]      Epoch: 43       Step: 6300      LastLoss: 0.759982705116272     AvgLoss: 0.8070626932382584     Lr: 0.006676079717550942        Acc: 0.765625
+2026-06-02 04:44:30.348 | INFO     | utils.train:start:153 - [2026-06-02-04_44_30]      Epoch: 44       Step: 6400      LastLoss: 0.6209104657173157    AvgLoss: 0.6792978984117508     Lr: 0.006542558123199923
+2026-06-02 04:44:38.109 | INFO     | utils.train:start:153 - [2026-06-02-04_44_38]      Epoch: 45       Step: 6500      LastLoss: 0.5313061475753784    AvgLoss: 0.5806741407513618     Lr: 0.006542558123199923
+2026-06-02 04:44:45.514 | INFO     | utils.train:start:223 - [2026-06-02-04_44_45]      Epoch: 45       Step: 6600      LastLoss: 0.46789610385894775   AvgLoss: 0.4995400655269623     Lr: 0.006542558123199923        Acc: 0.85546875
+2026-06-02 04:44:52.661 | INFO     | utils.train:start:153 - [2026-06-02-04_44_52]      Epoch: 46       Step: 6700      LastLoss: 0.39061030745506287   AvgLoss: 0.43419966995716097    Lr: 0.0064117069607359245
+2026-06-02 04:44:59.908 | INFO     | utils.train:start:153 - [2026-06-02-04_44_59]      Epoch: 47       Step: 6800      LastLoss: 0.36967402696609497   AvgLoss: 0.3737667241692543     Lr: 0.0064117069607359245
+2026-06-02 04:45:07.603 | INFO     | utils.train:start:223 - [2026-06-02-04_45_07]      Epoch: 47       Step: 6900      LastLoss: 0.3059825301170349    AvgLoss: 0.33199809342622755    Lr: 0.0064117069607359245       Acc: 0.921875
+2026-06-02 04:45:14.459 | INFO     | utils.train:start:153 - [2026-06-02-04_45_14]      Epoch: 48       Step: 7000      LastLoss: 0.2883538603782654    AvgLoss: 0.288994677066803      Lr: 0.006283472821521206
+2026-06-02 04:45:21.208 | INFO     | utils.train:start:153 - [2026-06-02-04_45_21]      Epoch: 49       Step: 7100      LastLoss: 0.2235514223575592    AvgLoss: 0.254268334954977      Lr: 0.006283472821521206
+2026-06-02 04:45:28.139 | INFO     | utils.train:start:223 - [2026-06-02-04_45_27]      Epoch: 49       Step: 7200      LastLoss: 0.246361643075943     AvgLoss: 0.22524722680449485    Lr: 0.006283472821521206        Acc: 0.9453125
+2026-06-02 04:45:35.021 | INFO     | utils.train:start:153 - [2026-06-02-04_45_35]      Epoch: 50       Step: 7300      LastLoss: 0.17654509842395782   AvgLoss: 0.19796353355050086    Lr: 0.006157803365090782
+2026-06-02 04:45:42.692 | INFO     | utils.train:start:153 - [2026-06-02-04_45_42]      Epoch: 51       Step: 7400      LastLoss: 0.17350271344184875   AvgLoss: 0.17522547334432603    Lr: 0.006157803365090782
+2026-06-02 04:45:49.951 | INFO     | utils.train:start:223 - [2026-06-02-04_45_49]      Epoch: 52       Step: 7500      LastLoss: 0.14785295724868774   AvgLoss: 0.15547709248960018    Lr: 0.006157803365090782        Acc: 0.97265625
+2026-06-02 04:45:56.786 | INFO     | utils.train:start:153 - [2026-06-02-04_45_56]      Epoch: 52       Step: 7600      LastLoss: 0.12588337063789368   AvgLoss: 0.13558488667011262    Lr: 0.006034647297788966
+2026-06-02 04:46:04.402 | INFO     | utils.train:start:153 - [2026-06-02-04_46_04]      Epoch: 53       Step: 7700      LastLoss: 0.10853207111358643   AvgLoss: 0.1215590050816536     Lr: 0.006034647297788966
+2026-06-02 04:46:11.781 | INFO     | utils.train:start:223 - [2026-06-02-04_46_11]      Epoch: 54       Step: 7800      LastLoss: 0.10326182842254639   AvgLoss: 0.11068329334259033    Lr: 0.006034647297788966        Acc: 0.984375
+2026-06-02 04:46:18.782 | INFO     | utils.train:start:153 - [2026-06-02-04_46_18]      Epoch: 54       Step: 7900      LastLoss: 0.09912651777267456   AvgLoss: 0.09820888720452786    Lr: 0.005913954351833187
+2026-06-02 04:46:26.425 | INFO     | utils.train:start:153 - [2026-06-02-04_46_26]      Epoch: 55       Step: 8000      LastLoss: 0.08050496876239777   AvgLoss: 0.08826674342155456    Lr: 0.005913954351833187
+2026-06-02 04:46:33.355 | INFO     | utils.train:start:223 - [2026-06-02-04_46_33]      Epoch: 56       Step: 8100      LastLoss: 0.06748832017183304   AvgLoss: 0.08127154961228371    Lr: 0.005913954351833187        Acc: 0.99609375
+2026-06-02 04:46:40.192 | INFO     | utils.train:start:153 - [2026-06-02-04_46_40]      Epoch: 56       Step: 8200      LastLoss: 0.08123346418142319   AvgLoss: 0.07302571967244148    Lr: 0.0057956752647965225
+2026-06-02 04:46:47.302 | INFO     | utils.train:start:153 - [2026-06-02-04_46_47]      Epoch: 57       Step: 8300      LastLoss: 0.06854159384965897   AvgLoss: 0.06738876353949308    Lr: 0.0057956752647965225
+current stop_count: 1
+2026-06-02 04:46:54.998 | INFO     | utils.train:start:223 - [2026-06-02-04_46_54]      Epoch: 58       Step: 8400      LastLoss: 0.053212519735097885  AvgLoss: 0.06182175438851118    Lr: 0.0057956752647965225       Acc: 0.98828125
+2026-06-02 04:47:02.183 | INFO     | utils.train:start:153 - [2026-06-02-04_47_02]      Epoch: 59       Step: 8500      LastLoss: 0.051736898720264435  AvgLoss: 0.057227898351848126   Lr: 0.005679761759500592
+2026-06-02 04:47:09.167 | INFO     | utils.train:start:153 - [2026-06-02-04_47_09]      Epoch: 59       Step: 8600      LastLoss: 0.05345615744590759   AvgLoss: 0.05323215641081333    Lr: 0.005679761759500592
+current stop_count: 2
+2026-06-02 04:47:16.303 | INFO     | utils.train:start:223 - [2026-06-02-04_47_16]      Epoch: 60       Step: 8700      LastLoss: 0.05699150264263153   AvgLoss: 0.05045365568250418    Lr: 0.005679761759500592        Acc: 0.9921875
+2026-06-02 04:47:23.159 | INFO     | utils.train:start:153 - [2026-06-02-04_47_23]      Epoch: 61       Step: 8800      LastLoss: 0.05235733836889267   AvgLoss: 0.046907148361206054   Lr: 0.00556616652431058
+2026-06-02 04:47:30.047 | INFO     | utils.train:start:153 - [2026-06-02-04_47_30]      Epoch: 61       Step: 8900      LastLoss: 0.04875172674655914   AvgLoss: 0.043974786251783374   Lr: 0.00556616652431058
+2026-06-02 04:47:37.451 | INFO     | utils.train:start:223 - [2026-06-02-04_47_37]      Epoch: 62       Step: 9000      LastLoss: 0.03948137164115906   AvgLoss: 0.04074976336210966    Lr: 0.00556616652431058 Acc: 1.0
+2026-06-02 04:47:44.458 | INFO     | utils.train:start:153 - [2026-06-02-04_47_44]      Epoch: 63       Step: 9100      LastLoss: 0.0375203974545002    AvgLoss: 0.03983112454414368    Lr: 0.005454843193824369
+2026-06-02 04:47:51.694 | INFO     | utils.train:start:153 - [2026-06-02-04_47_51]      Epoch: 63       Step: 9200      LastLoss: 0.03787294775247574   AvgLoss: 0.036657787058502436   Lr: 0.005454843193824369
+current stop_count: 1
+2026-06-02 04:47:58.814 | INFO     | utils.train:start:223 - [2026-06-02-04_47_58]      Epoch: 64       Step: 9300      LastLoss: 0.04498540982604027   AvgLoss: 0.03600559312850237    Lr: 0.005454843193824369        Acc: 0.9921875
+2026-06-02 04:48:06.067 | INFO     | utils.train:start:153 - [2026-06-02-04_48_06]      Epoch: 65       Step: 9400      LastLoss: 0.0281299389898777    AvgLoss: 0.033821846693754196   Lr: 0.005345746329947882
+2026-06-02 04:48:13.286 | INFO     | utils.train:start:153 - [2026-06-02-04_48_13]      Epoch: 65       Step: 9500      LastLoss: 0.02916531264781952   AvgLoss: 0.03199529154226184    Lr: 0.005345746329947882
+current stop_count: 2
+2026-06-02 04:48:20.641 | INFO     | utils.train:start:223 - [2026-06-02-04_48_20]      Epoch: 66       Step: 9600      LastLoss: 0.02774941548705101   AvgLoss: 0.03062325159087777    Lr: 0.005345746329947882        Acc: 0.98828125
+2026-06-02 04:48:27.633 | INFO     | utils.train:start:153 - [2026-06-02-04_48_27]      Epoch: 67       Step: 9700      LastLoss: 0.034382164478302     AvgLoss: 0.029072420801967383   Lr: 0.005238831403348924
+2026-06-02 04:48:35.005 | INFO     | utils.train:start:153 - [2026-06-02-04_48_34]      Epoch: 68       Step: 9800      LastLoss: 0.026141567155718803  AvgLoss: 0.02844319907948375    Lr: 0.005238831403348924
+current stop_count: 3
+2026-06-02 04:48:42.099 | INFO     | utils.train:start:223 - [2026-06-02-04_48_41]      Epoch: 68       Step: 9900      LastLoss: 0.031747668981552124  AvgLoss: 0.027554409876465798   Lr: 0.005238831403348924        Acc: 1.0
+2026-06-02 04:48:49.429 | INFO     | utils.train:start:153 - [2026-06-02-04_48_49]      Epoch: 69       Step: 10000     LastLoss: 0.02500418946146965   AvgLoss: 0.026243608761578798   Lr: 0.005134054775281945
+2026-06-02 04:48:56.278 | INFO     | utils.train:start:153 - [2026-06-02-04_48_56]      Epoch: 70       Step: 10100     LastLoss: 0.02572336047887802   AvgLoss: 0.025455163214355706   Lr: 0.005134054775281945
+current stop_count: 4
+2026-06-02 04:49:04.519 | INFO     | utils.train:start:223 - [2026-06-02-04_49_04]      Epoch: 70       Step: 10200     LastLoss: 0.023167498409748077  AvgLoss: 0.024157011732459068   Lr: 0.005134054775281945        Acc: 0.984375
+2026-06-02 04:49:13.152 | INFO     | utils.train:start:153 - [2026-06-02-04_49_13]      Epoch: 71       Step: 10300     LastLoss: 0.02298879250884056   AvgLoss: 0.023888984117656945   Lr: 0.005031373679776306
+2026-06-02 04:49:21.020 | INFO     | utils.train:start:153 - [2026-06-02-04_49_20]      Epoch: 72       Step: 10400     LastLoss: 0.02440210059285164   AvgLoss: 0.022458893414586782   Lr: 0.005031373679776306
+current stop_count: 5
+2026-06-02 04:49:28.315 | INFO     | utils.train:start:223 - [2026-06-02-04_49_28]      Epoch: 72       Step: 10500     LastLoss: 0.0204772911965847    AvgLoss: 0.021903573991730808   Lr: 0.005031373679776306        Acc: 0.98828125
+2026-06-02 04:49:35.614 | INFO     | utils.train:start:153 - [2026-06-02-04_49_35]      Epoch: 73       Step: 10600     LastLoss: 0.0210806243121624    AvgLoss: 0.02114564536139369    Lr: 0.00493074620618078
+2026-06-02 04:49:42.533 | INFO     | utils.train:start:153 - [2026-06-02-04_49_42]      Epoch: 74       Step: 10700     LastLoss: 0.017326459288597107  AvgLoss: 0.020850601587444544   Lr: 0.00493074620618078
+current stop_count: 6
+2026-06-02 04:49:49.554 | INFO     | utils.train:start:223 - [2026-06-02-04_49_49]      Epoch: 74       Step: 10800     LastLoss: 0.019381636753678322  AvgLoss: 0.020159825440496205   Lr: 0.00493074620618078 Acc: 1.0
+2026-06-02 04:49:56.249 | INFO     | utils.train:start:153 - [2026-06-02-04_49_56]      Epoch: 75       Step: 10900     LastLoss: 0.01649199053645134   AvgLoss: 0.019559696773067115   Lr: 0.004832131282057164
+2026-06-02 04:50:02.957 | INFO     | utils.train:start:153 - [2026-06-02-04_50_02]      Epoch: 76       Step: 11000     LastLoss: 0.02034352533519268   AvgLoss: 0.018384227333590387   Lr: 0.004832131282057164
+current stop_count: 7
+2026-06-02 04:50:09.814 | INFO     | utils.train:start:223 - [2026-06-02-04_50_09]      Epoch: 77       Step: 11100     LastLoss: 0.016471553593873978  AvgLoss: 0.018745328038930892   Lr: 0.004832131282057164        Acc: 1.0
+2026-06-02 04:50:16.696 | INFO     | utils.train:start:153 - [2026-06-02-04_50_16]      Epoch: 77       Step: 11200     LastLoss: 0.01873304881155491   AvgLoss: 0.017666410412639378   Lr: 0.004735488656416021
+2026-06-02 04:50:23.400 | INFO     | utils.train:start:153 - [2026-06-02-04_50_23]      Epoch: 78       Step: 11300     LastLoss: 0.018753420561552048  AvgLoss: 0.017479105917736888   Lr: 0.004735488656416021
+current stop_count: 8
+2026-06-02 04:50:30.272 | INFO     | utils.train:start:223 - [2026-06-02-04_50_30]      Epoch: 79       Step: 11400     LastLoss: 0.0171585101634264    AvgLoss: 0.01686339158564806    Lr: 0.004735488656416021        Acc: 0.98828125
+2026-06-02 04:50:36.989 | INFO     | utils.train:start:153 - [2026-06-02-04_50_36]      Epoch: 79       Step: 11500     LastLoss: 0.015994099900126457  AvgLoss: 0.016749706175178288   Lr: 0.004640778883287701
+2026-06-02 04:50:43.679 | INFO     | utils.train:start:153 - [2026-06-02-04_50_43]      Epoch: 80       Step: 11600     LastLoss: 0.016939211636781693  AvgLoss: 0.016150001352652908   Lr: 0.004640778883287701
+current stop_count: 9
+2026-06-02 04:50:50.543 | INFO     | utils.train:start:223 - [2026-06-02-04_50_50]      Epoch: 81       Step: 11700     LastLoss: 0.01806310936808586   AvgLoss: 0.01586608888581395    Lr: 0.004640778883287701        Acc: 0.9921875
+2026-06-02 04:50:57.239 | INFO     | utils.train:start:153 - [2026-06-02-04_50_57]      Epoch: 81       Step: 11800     LastLoss: 0.016292644664645195  AvgLoss: 0.015442307433113455   Lr: 0.0045479633056219465
+2026-06-02 04:51:03.930 | INFO     | utils.train:start:153 - [2026-06-02-04_51_03]      Epoch: 82       Step: 11900     LastLoss: 0.013682101853191853  AvgLoss: 0.01498778397217393    Lr: 0.0045479633056219465
+current stop_count: 10
+2026-06-02 04:51:10.815 | INFO     | utils.train:start:223 - [2026-06-02-04_51_10]      Epoch: 83       Step: 12000     LastLoss: 0.016431156545877457  AvgLoss: 0.014880300080403686   Lr: 0.0045479633056219465       Acc: 0.9921875
+2026-06-02 04:51:17.503 | INFO     | utils.train:start:153 - [2026-06-02-04_51_17]      Epoch: 84       Step: 12100     LastLoss: 0.012858718633651733  AvgLoss: 0.014544031815603375   Lr: 0.004457004039509507
+2026-06-02 04:51:24.208 | INFO     | utils.train:start:153 - [2026-06-02-04_51_24]      Epoch: 84       Step: 12200     LastLoss: 0.013740193098783493  AvgLoss: 0.014141682470217347   Lr: 0.004457004039509507
+current stop_count: 11
+2026-06-02 04:51:31.080 | INFO     | utils.train:start:223 - [2026-06-02-04_51_30]      Epoch: 85       Step: 12300     LastLoss: 0.014005175791680813  AvgLoss: 0.013873010408133268   Lr: 0.004457004039509507        Acc: 1.0
+2026-06-02 04:51:37.783 | INFO     | utils.train:start:153 - [2026-06-02-04_51_37]      Epoch: 86       Step: 12400     LastLoss: 0.01272284984588623   AvgLoss: 0.01378836520947516    Lr: 0.004367863958719317
+2026-06-02 04:51:44.497 | INFO     | utils.train:start:153 - [2026-06-02-04_51_44]      Epoch: 86       Step: 12500     LastLoss: 0.013414840213954449  AvgLoss: 0.01320645154453814    Lr: 0.004367863958719317
+current stop_count: 12
+2026-06-02 04:51:51.369 | INFO     | utils.train:start:223 - [2026-06-02-04_51_51]      Epoch: 87       Step: 12600     LastLoss: 0.015148095786571503  AvgLoss: 0.013350729187950492   Lr: 0.004367863958719317        Acc: 0.98046875
+2026-06-02 04:51:58.058 | INFO     | utils.train:start:153 - [2026-06-02-04_51_58]      Epoch: 88       Step: 12700     LastLoss: 0.013180775567889214  AvgLoss: 0.0128252112865448     Lr: 0.004280506679544931
+2026-06-02 04:52:04.777 | INFO     | utils.train:start:153 - [2026-06-02-04_52_04]      Epoch: 88       Step: 12800     LastLoss: 0.014441313222050667  AvgLoss: 0.012851736294105649   Lr: 0.004280506679544931
+current stop_count: 13
+2026-06-02 04:52:11.655 | INFO     | utils.train:start:223 - [2026-06-02-04_52_11]      Epoch: 89       Step: 12900     LastLoss: 0.012565233744680882  AvgLoss: 0.012148522711358965   Lr: 0.004280506679544931        Acc: 0.9921875
+2026-06-02 04:52:18.362 | INFO     | utils.train:start:153 - [2026-06-02-04_52_18]      Epoch: 90       Step: 13000     LastLoss: 0.010086722671985626  AvgLoss: 0.012407596381381154   Lr: 0.004194896545954032
+2026-06-02 04:52:25.084 | INFO     | utils.train:start:153 - [2026-06-02-04_52_25]      Epoch: 90       Step: 13100     LastLoss: 0.010719253681600094  AvgLoss: 0.011843796549364925   Lr: 0.004194896545954032
+current stop_count: 14
+2026-06-02 04:52:32.325 | INFO     | utils.train:start:223 - [2026-06-02-04_52_32]      Epoch: 91       Step: 13200     LastLoss: 0.011580955237150192  AvgLoss: 0.01172233217395842    Lr: 0.004194896545954032        Acc: 0.99609375
+2026-06-02 04:52:39.403 | INFO     | utils.train:start:153 - [2026-06-02-04_52_39]      Epoch: 92       Step: 13300     LastLoss: 0.009323340840637684  AvgLoss: 0.011562967728823424   Lr: 0.004110998615034951
+2026-06-02 04:52:46.473 | INFO     | utils.train:start:153 - [2026-06-02-04_52_46]      Epoch: 93       Step: 13400     LastLoss: 0.011663313955068588  AvgLoss: 0.011333012944087386   Lr: 0.004110998615034951
+current stop_count: 15
+2026-06-02 04:52:54.073 | INFO     | utils.train:start:223 - [2026-06-02-04_52_53]      Epoch: 93       Step: 13500     LastLoss: 0.00885382853448391   AvgLoss: 0.011234913039952516   Lr: 0.004110998615034951        Acc: 0.9765625
+2026-06-02 04:53:02.239 | INFO     | utils.train:start:153 - [2026-06-02-04_53_02]      Epoch: 94       Step: 13600     LastLoss: 0.01042488869279623   AvgLoss: 0.011142412759363651   Lr: 0.004028778642734252
+2026-06-02 04:53:10.771 | INFO     | utils.train:start:153 - [2026-06-02-04_53_10]      Epoch: 95       Step: 13700     LastLoss: 0.009935849346220493  AvgLoss: 0.010784808564931154   Lr: 0.004028778642734252
+current stop_count: 16
+2026-06-02 04:53:19.300 | INFO     | utils.train:start:223 - [2026-06-02-04_53_19]      Epoch: 95       Step: 13800     LastLoss: 0.013132745400071144  AvgLoss: 0.01057265741750598    Lr: 0.004028778642734252        Acc: 0.99609375
+2026-06-02 04:53:26.457 | INFO     | utils.train:start:153 - [2026-06-02-04_53_26]      Epoch: 96       Step: 13900     LastLoss: 0.010597449727356434  AvgLoss: 0.01064843148458749    Lr: 0.003948203069879567
+2026-06-02 04:53:33.200 | INFO     | utils.train:start:153 - [2026-06-02-04_53_33]      Epoch: 97       Step: 14000     LastLoss: 0.00989647675305605   AvgLoss: 0.010178535832092167   Lr: 0.003948203069879567
+current stop_count: 17
+2026-06-02 04:53:40.137 | INFO     | utils.train:start:223 - [2026-06-02-04_53_39]      Epoch: 97       Step: 14100     LastLoss: 0.009803565219044685  AvgLoss: 0.010258587463758885   Lr: 0.003948203069879567        Acc: 1.0
+2026-06-02 04:53:46.913 | INFO     | utils.train:start:153 - [2026-06-02-04_53_46]      Epoch: 98       Step: 14200     LastLoss: 0.010851760394871235  AvgLoss: 0.010098268105648458   Lr: 0.003869239008481976
+2026-06-02 04:53:53.723 | INFO     | utils.train:start:153 - [2026-06-02-04_53_53]      Epoch: 99       Step: 14300     LastLoss: 0.00976820383220911   AvgLoss: 0.009776262501254677   Lr: 0.003869239008481976
+current stop_count: 18
+2026-06-02 04:54:00.890 | INFO     | utils.train:start:223 - [2026-06-02-04_54_00]      Epoch: 99       Step: 14400     LastLoss: 0.008963792584836483  AvgLoss: 0.009796659033745526   Lr: 0.003869239008481976        Acc: 1.0
+2026-06-02 04:54:07.652 | INFO     | utils.train:start:153 - [2026-06-02-04_54_07]      Epoch: 100      Step: 14500     LastLoss: 0.00897960551083088   AvgLoss: 0.00965681646950543    Lr: 0.0037918542283123364
+2026-06-02 04:54:14.419 | INFO     | utils.train:start:153 - [2026-06-02-04_54_14]      Epoch: 101      Step: 14600     LastLoss: 0.008567925542593002  AvgLoss: 0.009470086945220828   Lr: 0.0037918542283123364
+current stop_count: 19
+2026-06-02 04:54:21.438 | INFO     | utils.train:start:223 - [2026-06-02-04_54_21]      Epoch: 102      Step: 14700     LastLoss: 0.010394197888672352  AvgLoss: 0.009493489898741245   Lr: 0.0037918542283123364       Acc: 0.99609375
+2026-06-02 04:54:28.149 | INFO     | utils.train:start:153 - [2026-06-02-04_54_28]      Epoch: 102      Step: 14800     LastLoss: 0.009521041065454483  AvgLoss: 0.009198119528591633   Lr: 0.0037160171437460895
+2026-06-02 04:54:34.854 | INFO     | utils.train:start:153 - [2026-06-02-04_54_34]      Epoch: 103      Step: 14900     LastLoss: 0.007867459207773209  AvgLoss: 0.00917213316541165    Lr: 0.0037160171437460895
+current stop_count: 20
+2026-06-02 04:54:41.716 | INFO     | utils.train:start:223 - [2026-06-02-04_54_41]      Epoch: 104      Step: 15000     LastLoss: 0.009269000962376595  AvgLoss: 0.009094407316297293   Lr: 0.0037160171437460895       Acc: 0.9765625
+2026-06-02 04:54:48.667 | INFO     | utils.train:start:153 - [2026-06-02-04_54_48]      Epoch: 104      Step: 15100     LastLoss: 0.010600892826914787  AvgLoss: 0.008935530208982528   Lr: 0.003641696800871168
+2026-06-02 04:54:55.426 | INFO     | utils.train:start:153 - [2026-06-02-04_54_55]      Epoch: 105      Step: 15200     LastLoss: 0.009866737760603428  AvgLoss: 0.008985668267123402   Lr: 0.003641696800871168
+current stop_count: 21
+2026-06-02 04:55:02.309 | INFO     | utils.train:start:223 - [2026-06-02-04_55_02]      Epoch: 106      Step: 15300     LastLoss: 0.010075646452605724  AvgLoss: 0.008600231069140136   Lr: 0.003641696800871168        Acc: 0.99609375
+2026-06-02 04:55:09.025 | INFO     | utils.train:start:153 - [2026-06-02-04_55_08]      Epoch: 106      Step: 15400     LastLoss: 0.007989982143044472  AvgLoss: 0.008660713569261133   Lr: 0.0035688628648537445
+2026-06-02 04:55:15.743 | INFO     | utils.train:start:153 - [2026-06-02-04_55_15]      Epoch: 107      Step: 15500     LastLoss: 0.009359738789498806  AvgLoss: 0.008479544231668114   Lr: 0.0035688628648537445
+current stop_count: 22
+2026-06-02 04:55:22.680 | INFO     | utils.train:start:223 - [2026-06-02-04_55_22]      Epoch: 108      Step: 15600     LastLoss: 0.008817088790237904  AvgLoss: 0.008437139843590558   Lr: 0.0035688628648537445       Acc: 1.0
+2026-06-02 04:55:29.387 | INFO     | utils.train:start:153 - [2026-06-02-04_55_29]      Epoch: 109      Step: 15700     LastLoss: 0.008483405224978924  AvgLoss: 0.00826460953336209    Lr: 0.0034974856075566697
+2026-06-02 04:55:36.088 | INFO     | utils.train:start:153 - [2026-06-02-04_55_36]      Epoch: 109      Step: 15800     LastLoss: 0.007501861546188593  AvgLoss: 0.008305058954283595   Lr: 0.0034974856075566697
+current stop_count: 23
+2026-06-02 04:55:42.950 | INFO     | utils.train:start:223 - [2026-06-02-04_55_42]      Epoch: 110      Step: 15900     LastLoss: 0.00711398059502244   AvgLoss: 0.008032104093581438   Lr: 0.0034974856075566697       Acc: 0.98828125
+2026-06-02 04:55:49.698 | INFO     | utils.train:start:153 - [2026-06-02-04_55_49]      Epoch: 111      Step: 16000     LastLoss: 0.008778600953519344  AvgLoss: 0.008085522693581879   Lr: 0.0034275358954055364
+2026-06-02 04:55:56.406 | INFO     | utils.train:start:153 - [2026-06-02-04_55_56]      Epoch: 111      Step: 16100     LastLoss: 0.008455386385321617  AvgLoss: 0.007968265218660236   Lr: 0.0034275358954055364
+current stop_count: 24
+2026-06-02 04:56:03.292 | INFO     | utils.train:start:223 - [2026-06-02-04_56_03]      Epoch: 112      Step: 16200     LastLoss: 0.007023263722658157  AvgLoss: 0.007893649954348802   Lr: 0.0034275358954055364       Acc: 0.98828125
+2026-06-02 04:56:10.054 | INFO     | utils.train:start:153 - [2026-06-02-04_56_10]      Epoch: 113      Step: 16300     LastLoss: 0.008090434595942497  AvgLoss: 0.007661024900153279   Lr: 0.0033589851774974257
+2026-06-02 04:56:16.775 | INFO     | utils.train:start:153 - [2026-06-02-04_56_16]      Epoch: 113      Step: 16400     LastLoss: 0.008255545049905777  AvgLoss: 0.007737957825884223   Lr: 0.0033589851774974257
+current stop_count: 25
+2026-06-02 04:56:23.726 | INFO     | utils.train:start:223 - [2026-06-02-04_56_23]      Epoch: 114      Step: 16500     LastLoss: 0.007930390536785126  AvgLoss: 0.007730981833301485   Lr: 0.0033589851774974257       Acc: 1.0
+2026-06-02 04:56:30.460 | INFO     | utils.train:start:153 - [2026-06-02-04_56_30]      Epoch: 115      Step: 16600     LastLoss: 0.007982226088643074  AvgLoss: 0.007577164699323475   Lr: 0.0032918054739474773
+2026-06-02 04:56:37.150 | INFO     | utils.train:start:153 - [2026-06-02-04_56_37]      Epoch: 115      Step: 16700     LastLoss: 0.007171424105763435  AvgLoss: 0.007445820081047713   Lr: 0.0032918054739474773
+current stop_count: 26
+2026-06-02 04:56:44.029 | INFO     | utils.train:start:223 - [2026-06-02-04_56_43]      Epoch: 116      Step: 16800     LastLoss: 0.007906368002295494  AvgLoss: 0.007457074411213398   Lr: 0.0032918054739474773       Acc: 0.9921875
+2026-06-02 04:56:50.756 | INFO     | utils.train:start:153 - [2026-06-02-04_56_50]      Epoch: 117      Step: 16900     LastLoss: 0.007716922555118799  AvgLoss: 0.007400011215358973   Lr: 0.003225969364468528
+2026-06-02 04:56:57.458 | INFO     | utils.train:start:153 - [2026-06-02-04_56_57]      Epoch: 118      Step: 17000     LastLoss: 0.006535113789141178  AvgLoss: 0.007164936913177371   Lr: 0.003225969364468528
+current stop_count: 27
+2026-06-02 04:57:04.349 | INFO     | utils.train:start:223 - [2026-06-02-04_57_04]      Epoch: 118      Step: 17100     LastLoss: 0.009178492240607738  AvgLoss: 0.007172788265161216   Lr: 0.003225969364468528        Acc: 0.98828125
+2026-06-02 04:57:11.075 | INFO     | utils.train:start:153 - [2026-06-02-04_57_11]      Epoch: 119      Step: 17200     LastLoss: 0.007784807123243809  AvgLoss: 0.0071189272683113815  Lr: 0.0031614499771791572
+2026-06-02 04:57:17.786 | INFO     | utils.train:start:153 - [2026-06-02-04_57_17]      Epoch: 120      Step: 17300     LastLoss: 0.006092601455748081  AvgLoss: 0.0070763769280165435  Lr: 0.0031614499771791572
+current stop_count: 28
+2026-06-02 04:57:24.692 | INFO     | utils.train:start:223 - [2026-06-02-04_57_24]      Epoch: 120      Step: 17400     LastLoss: 0.008031422272324562  AvgLoss: 0.007027177810668945   Lr: 0.0031614499771791572       Acc: 1.0
+2026-06-02 04:57:31.409 | INFO     | utils.train:start:153 - [2026-06-02-04_57_31]      Epoch: 121      Step: 17500     LastLoss: 0.0068511199206113815 AvgLoss: 0.0068747107964009044  Lr: 0.003098220977635574
+2026-06-02 04:57:38.145 | INFO     | utils.train:start:153 - [2026-06-02-04_57_38]      Epoch: 122      Step: 17600     LastLoss: 0.0069205560721457005 AvgLoss: 0.006870410535484552   Lr: 0.003098220977635574
+current stop_count: 29
+2026-06-02 04:57:45.024 | INFO     | utils.train:start:223 - [2026-06-02-04_57_44]      Epoch: 122      Step: 17700     LastLoss: 0.007108641322702169  AvgLoss: 0.00682326490059495    Lr: 0.003098220977635574        Acc: 0.9921875
+2026-06-02 04:57:51.822 | INFO     | utils.train:start:153 - [2026-06-02-04_57_51]      Epoch: 123      Step: 17800     LastLoss: 0.007350372150540352  AvgLoss: 0.0068785578710958365  Lr: 0.0030362565580828627
+2026-06-02 04:57:58.538 | INFO     | utils.train:start:153 - [2026-06-02-04_57_58]      Epoch: 124      Step: 17900     LastLoss: 0.008356433361768723  AvgLoss: 0.006671746517531574   Lr: 0.0030362565580828627
+current stop_count: 30
+2026-06-02 04:58:05.446 | INFO     | utils.train:start:223 - [2026-06-02-04_58_05]      Epoch: 124      Step: 18000     LastLoss: 0.007452376186847687  AvgLoss: 0.006587561755441129   Lr: 0.0030362565580828627       Acc: 0.9921875
+2026-06-02 04:58:12.153 | INFO     | utils.train:start:153 - [2026-06-02-04_58_12]      Epoch: 125      Step: 18100     LastLoss: 0.006783492863178253  AvgLoss: 0.0065765519766137     Lr: 0.0029755314269212054
+2026-06-02 04:58:18.854 | INFO     | utils.train:start:153 - [2026-06-02-04_58_18]      Epoch: 126      Step: 18200     LastLoss: 0.006652382202446461  AvgLoss: 0.006579704298637808   Lr: 0.0029755314269212054
+current stop_count: 31
+2026-06-02 04:58:25.751 | INFO     | utils.train:start:223 - [2026-06-02-04_58_25]      Epoch: 127      Step: 18300     LastLoss: 0.006433398928493261  AvgLoss: 0.006456707413308322   Lr: 0.0029755314269212054       Acc: 1.0
+2026-06-02 04:58:32.520 | INFO     | utils.train:start:153 - [2026-06-02-04_58_32]      Epoch: 127      Step: 18400     LastLoss: 0.005036334041506052  AvgLoss: 0.0064102947153151036  Lr: 0.0029160207983827814
+2026-06-02 04:58:39.243 | INFO     | utils.train:start:153 - [2026-06-02-04_58_39]      Epoch: 128      Step: 18500     LastLoss: 0.006903024390339851  AvgLoss: 0.006404029247350991   Lr: 0.0029160207983827814
+current stop_count: 32
+2026-06-02 04:58:46.122 | INFO     | utils.train:start:223 - [2026-06-02-04_58_45]      Epoch: 129      Step: 18600     LastLoss: 0.006246509961783886  AvgLoss: 0.006402728985995055   Lr: 0.0029160207983827814       Acc: 0.99609375
+2026-06-02 04:58:52.836 | INFO     | utils.train:start:153 - [2026-06-02-04_58_52]      Epoch: 129      Step: 18700     LastLoss: 0.005794555880129337  AvgLoss: 0.006252484181895852   Lr: 0.0028577003824151255
+2026-06-02 04:58:59.552 | INFO     | utils.train:start:153 - [2026-06-02-04_58_59]      Epoch: 130      Step: 18800     LastLoss: 0.006322359666228294  AvgLoss: 0.006220761989243329   Lr: 0.0028577003824151255
+current stop_count: 33
+2026-06-02 04:59:06.422 | INFO     | utils.train:start:223 - [2026-06-02-04_59_06]      Epoch: 131      Step: 18900     LastLoss: 0.005769575480371714  AvgLoss: 0.006240784451365471   Lr: 0.0028577003824151255       Acc: 1.0
+2026-06-02 04:59:13.161 | INFO     | utils.train:start:153 - [2026-06-02-04_59_13]      Epoch: 131      Step: 19000     LastLoss: 0.006437927484512329  AvgLoss: 0.006208426309749484   Lr: 0.002800546374766823
+2026-06-02 04:59:19.868 | INFO     | utils.train:start:153 - [2026-06-02-04_59_19]      Epoch: 132      Step: 19100     LastLoss: 0.006203387398272753  AvgLoss: 0.00606182299554348    Lr: 0.002800546374766823
+current stop_count: 34
+2026-06-02 04:59:26.748 | INFO     | utils.train:start:223 - [2026-06-02-04_59_26]      Epoch: 133      Step: 19200     LastLoss: 0.005624748300760984  AvgLoss: 0.006119942227378487   Lr: 0.002800546374766823        Acc: 0.97265625
+2026-06-02 04:59:33.457 | INFO     | utils.train:start:153 - [2026-06-02-04_59_33]      Epoch: 134      Step: 19300     LastLoss: 0.006018226034939289  AvgLoss: 0.005982088176533579   Lr: 0.0027445354472714865
+2026-06-02 04:59:40.169 | INFO     | utils.train:start:153 - [2026-06-02-04_59_40]      Epoch: 134      Step: 19400     LastLoss: 0.006619814783334732  AvgLoss: 0.005990748703479767   Lr: 0.0027445354472714865
+current stop_count: 35
+2026-06-02 04:59:47.059 | INFO     | utils.train:start:223 - [2026-06-02-04_59_46]      Epoch: 135      Step: 19500     LastLoss: 0.00553725752979517   AvgLoss: 0.005817786417901516   Lr: 0.0027445354472714865       Acc: 1.0
+2026-06-02 04:59:53.771 | INFO     | utils.train:start:153 - [2026-06-02-04_59_53]      Epoch: 136      Step: 19600     LastLoss: 0.006075327284634113  AvgLoss: 0.006052788700908422   Lr: 0.0026896447383260567
+2026-06-02 05:00:00.474 | INFO     | utils.train:start:153 - [2026-06-02-05_00_00]      Epoch: 136      Step: 19700     LastLoss: 0.005371229723095894  AvgLoss: 0.005761215169914066   Lr: 0.0026896447383260567
+current stop_count: 36
+2026-06-02 05:00:07.336 | INFO     | utils.train:start:223 - [2026-06-02-05_00_07]      Epoch: 137      Step: 19800     LastLoss: 0.006173421628773212  AvgLoss: 0.005874436413869262   Lr: 0.0026896447383260567       Acc: 0.9765625
+2026-06-02 05:00:14.036 | INFO     | utils.train:start:153 - [2026-06-02-05_00_14]      Epoch: 138      Step: 19900     LastLoss: 0.006845727562904358  AvgLoss: 0.005766973663121462   Lr: 0.0026358518435595354
+2026-06-02 05:00:20.772 | INFO     | utils.train:start:153 - [2026-06-02-05_00_20]      Epoch: 138      Step: 20000     LastLoss: 0.006008169613778591  AvgLoss: 0.005765576609410346   Lr: 0.0026358518435595354
+current stop_count: 37
+2026-06-02 05:00:27.753 | INFO     | utils.train:start:223 - [2026-06-02-05_00_27]      Epoch: 139      Step: 20100     LastLoss: 0.00531281903386116   AvgLoss: 0.0057167804008349775  Lr: 0.0026358518435595354       Acc: 0.99609375
+2026-06-02 05:00:34.485 | INFO     | utils.train:start:153 - [2026-06-02-05_00_34]      Epoch: 140      Step: 20200     LastLoss: 0.005679624155163765  AvgLoss: 0.0057149330899119374  Lr: 0.0025831348066883445
+2026-06-02 05:00:41.181 | INFO     | utils.train:start:153 - [2026-06-02-05_00_41]      Epoch: 140      Step: 20300     LastLoss: 0.005316357593983412  AvgLoss: 0.005625503254123032   Lr: 0.0025831348066883445
+current stop_count: 38
+2026-06-02 05:00:48.045 | INFO     | utils.train:start:223 - [2026-06-02-05_00_47]      Epoch: 141      Step: 20400     LastLoss: 0.005025758873671293  AvgLoss: 0.005628985851071775   Lr: 0.0025831348066883445       Acc: 0.99609375
+2026-06-02 05:00:54.757 | INFO     | utils.train:start:153 - [2026-06-02-05_00_54]      Epoch: 142      Step: 20500     LastLoss: 0.006196268834173679  AvgLoss: 0.005498085687868297   Lr: 0.0025314721105545775
+2026-06-02 05:01:01.476 | INFO     | utils.train:start:153 - [2026-06-02-05_01_01]      Epoch: 143      Step: 20600     LastLoss: 0.005614189896732569  AvgLoss: 0.005555386247579008   Lr: 0.0025314721105545775
+current stop_count: 39
+2026-06-02 05:01:08.354 | INFO     | utils.train:start:223 - [2026-06-02-05_01_08]      Epoch: 143      Step: 20700     LastLoss: 0.006682056002318859  AvgLoss: 0.005435590683482587   Lr: 0.0025314721105545775       Acc: 0.9921875
+2026-06-02 05:01:15.095 | INFO     | utils.train:start:153 - [2026-06-02-05_01_15]      Epoch: 144      Step: 20800     LastLoss: 0.005008555017411709  AvgLoss: 0.005460838093422353   Lr: 0.002480842668343486
+2026-06-02 05:01:21.796 | INFO     | utils.train:start:153 - [2026-06-02-05_01_21]      Epoch: 145      Step: 20900     LastLoss: 0.005393120460212231  AvgLoss: 0.005508999177254737   Lr: 0.002480842668343486
+current stop_count: 40
+2026-06-02 05:01:28.741 | INFO     | utils.train:start:223 - [2026-06-02-05_01_28]      Epoch: 145      Step: 21000     LastLoss: 0.005004660692065954  AvgLoss: 0.005385385947301984   Lr: 0.002480842668343486        Acc: 0.984375
+2026-06-02 05:01:35.469 | INFO     | utils.train:start:153 - [2026-06-02-05_01_35]      Epoch: 146      Step: 21100     LastLoss: 0.005349148064851761  AvgLoss: 0.0053709815768525     Lr: 0.002431225814976616
+2026-06-02 05:01:42.184 | INFO     | utils.train:start:153 - [2026-06-02-05_01_42]      Epoch: 147      Step: 21200     LastLoss: 0.004776090383529663  AvgLoss: 0.005335095562040806   Lr: 0.002431225814976616
+current stop_count: 41
+2026-06-02 05:01:49.076 | INFO     | utils.train:start:223 - [2026-06-02-05_01_48]      Epoch: 147      Step: 21300     LastLoss: 0.0052625807002186775 AvgLoss: 0.005314999641850591   Lr: 0.002431225814976616        Acc: 1.0
+2026-06-02 05:01:55.788 | INFO     | utils.train:start:153 - [2026-06-02-05_01_55]      Epoch: 148      Step: 21400     LastLoss: 0.005367937032133341  AvgLoss: 0.005234322962351144   Lr: 0.0023826012986770837
+2026-06-02 05:02:02.499 | INFO     | utils.train:start:153 - [2026-06-02-05_02_02]      Epoch: 149      Step: 21500     LastLoss: 0.0060878414660692215 AvgLoss: 0.005226921546272934   Lr: 0.0023826012986770837
+current stop_count: 42
+2026-06-02 05:02:09.392 | INFO     | utils.train:start:223 - [2026-06-02-05_02_09]      Epoch: 149      Step: 21600     LastLoss: 0.004373073112219572  AvgLoss: 0.0052597658289596436  Lr: 0.0023826012986770837       Acc: 0.9921875
+2026-06-02 05:02:16.109 | INFO     | utils.train:start:153 - [2026-06-02-05_02_16]      Epoch: 150      Step: 21700     LastLoss: 0.00597778894007206   AvgLoss: 0.005204514563083649   Lr: 0.002334949272703542
+2026-06-02 05:02:22.814 | INFO     | utils.train:start:153 - [2026-06-02-05_02_22]      Epoch: 151      Step: 21800     LastLoss: 0.005629508290439844  AvgLoss: 0.005135616201441735   Lr: 0.002334949272703542
+current stop_count: 43
+2026-06-02 05:02:29.791 | INFO     | utils.train:start:223 - [2026-06-02-05_02_29]      Epoch: 152      Step: 21900     LastLoss: 0.0049804640002548695 AvgLoss: 0.005135576275642961   Lr: 0.002334949272703542        Acc: 0.98046875
+2026-06-02 05:02:36.501 | INFO     | utils.train:start:153 - [2026-06-02-05_02_36]      Epoch: 152      Step: 22000     LastLoss: 0.005128250457346439  AvgLoss: 0.005091288154944778   Lr: 0.002288250287249471
+2026-06-02 05:02:43.217 | INFO     | utils.train:start:153 - [2026-06-02-05_02_43]      Epoch: 153      Step: 22100     LastLoss: 0.004417895805090666  AvgLoss: 0.005200151661410928   Lr: 0.002288250287249471
+current stop_count: 44
+2026-06-02 05:02:50.123 | INFO     | utils.train:start:223 - [2026-06-02-05_02_49]      Epoch: 154      Step: 22200     LastLoss: 0.004472601693123579  AvgLoss: 0.005000512413680554   Lr: 0.002288250287249471        Acc: 1.0
+2026-06-02 05:02:56.842 | INFO     | utils.train:start:153 - [2026-06-02-05_02_56]      Epoch: 154      Step: 22300     LastLoss: 0.0043141962960362434 AvgLoss: 0.0050365700852125885  Lr: 0.002242485281504482
+2026-06-02 05:03:03.567 | INFO     | utils.train:start:153 - [2026-06-02-05_03_03]      Epoch: 155      Step: 22400     LastLoss: 0.004548671655356884  AvgLoss: 0.004990620971657336   Lr: 0.002242485281504482
+current stop_count: 45
+2026-06-02 05:03:10.422 | INFO     | utils.train:start:223 - [2026-06-02-05_03_10]      Epoch: 156      Step: 22500     LastLoss: 0.0050998833030462265 AvgLoss: 0.00500848050462082    Lr: 0.002242485281504482        Acc: 1.0
+2026-06-02 05:03:17.153 | INFO     | utils.train:start:153 - [2026-06-02-05_03_17]      Epoch: 156      Step: 22600     LastLoss: 0.004251248203217983  AvgLoss: 0.004951889046933502   Lr: 0.0021976355758743923
+2026-06-02 05:03:23.883 | INFO     | utils.train:start:153 - [2026-06-02-05_03_23]      Epoch: 157      Step: 22700     LastLoss: 0.004547146148979664  AvgLoss: 0.004928408407140523   Lr: 0.0021976355758743923
+current stop_count: 46
+2026-06-02 05:03:30.848 | INFO     | utils.train:start:223 - [2026-06-02-05_03_30]      Epoch: 158      Step: 22800     LastLoss: 0.006132104434072971  AvgLoss: 0.004952889024280011   Lr: 0.0021976355758743923       Acc: 0.99609375
+2026-06-02 05:03:37.551 | INFO     | utils.train:start:153 - [2026-06-02-05_03_37]      Epoch: 159      Step: 22900     LastLoss: 0.0040962230414152145 AvgLoss: 0.004896812462247908   Lr: 0.0021536828643569043
+2026-06-02 05:03:44.265 | INFO     | utils.train:start:153 - [2026-06-02-05_03_44]      Epoch: 159      Step: 23000     LastLoss: 0.004167875740677118  AvgLoss: 0.004871731514576823   Lr: 0.0021536828643569043
+current stop_count: 47
+2026-06-02 05:03:51.119 | INFO     | utils.train:start:223 - [2026-06-02-05_03_50]      Epoch: 160      Step: 23100     LastLoss: 0.00523704569786787   AvgLoss: 0.0047723336494527755  Lr: 0.0021536828643569043       Acc: 0.9921875
+2026-06-02 05:03:57.845 | INFO     | utils.train:start:153 - [2026-06-02-05_03_57]      Epoch: 161      Step: 23200     LastLoss: 0.005227093119174242  AvgLoss: 0.004885993176139891   Lr: 0.002110609207069766
+2026-06-02 05:04:04.572 | INFO     | utils.train:start:153 - [2026-06-02-05_04_04]      Epoch: 161      Step: 23300     LastLoss: 0.004607876762747765  AvgLoss: 0.004816805450245738   Lr: 0.002110609207069766
+current stop_count: 48
+2026-06-02 05:04:11.461 | INFO     | utils.train:start:223 - [2026-06-02-05_04_11]      Epoch: 162      Step: 23400     LastLoss: 0.004775595851242542  AvgLoss: 0.0047425446729175745  Lr: 0.002110609207069766        Acc: 0.99609375
+2026-06-02 05:04:18.173 | INFO     | utils.train:start:153 - [2026-06-02-05_04_18]      Epoch: 163      Step: 23500     LastLoss: 0.00494060292840004   AvgLoss: 0.004781499858945608   Lr: 0.0020683970229283706
+2026-06-02 05:04:24.889 | INFO     | utils.train:start:153 - [2026-06-02-05_04_24]      Epoch: 163      Step: 23600     LastLoss: 0.005423287861049175  AvgLoss: 0.004734958722256124   Lr: 0.0020683970229283706
+current stop_count: 49
+2026-06-02 05:04:31.859 | INFO     | utils.train:start:223 - [2026-06-02-05_04_31]      Epoch: 164      Step: 23700     LastLoss: 0.004299520049244165  AvgLoss: 0.004724815187510103   Lr: 0.0020683970229283706       Acc: 0.9921875
+2026-06-02 05:04:38.590 | INFO     | utils.train:start:153 - [2026-06-02-05_04_38]      Epoch: 165      Step: 23800     LastLoss: 0.004063190892338753  AvgLoss: 0.0046612416417337954  Lr: 0.002027029082469803
+2026-06-02 05:04:45.301 | INFO     | utils.train:start:153 - [2026-06-02-05_04_45]      Epoch: 165      Step: 23900     LastLoss: 0.004433844704180956  AvgLoss: 0.004690902705769986   Lr: 0.002027029082469803
+current stop_count: 50
+-------going to stop early!!!--------
+2026-06-02 05:04:52.880 | INFO     | utils.train:start:223 - [2026-06-02-05_04_52]      Epoch: 166      Step: 24000     LastLoss: 0.004935100674629211  AvgLoss: 0.004625065859872848   Lr: 0.002027029082469803        Acc: 0.9921875
+2026-06-02 05:04:52.881 | INFO     | utils.train:start:230 - 
+Training Finished!Exporting Model...
+C:\Users\王正宏\.pyenv\pyenv-win\versions\3.11.9\Lib\site-packages\torch\onnx\symbolic_opset9.py:4279: UserWarning: Exporting a model to ONNX with a batch_size other than 1, with a variable length with LSTM can cause an error when running the ONNX model with a different batch size. Make sure to save the model with a batch size of 1, or define the initial states (h0/c0) as inputs of the model. 
+  warnings.warn(
+2026-06-02 05:04:53.602 | INFO     | utils.train:start:246 - 
+Export Finished!Using Time: 28.283333333333335min
+(base) PS C:\Users\王正宏\Desktop\NTUST-CaptureCode-Bot> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
