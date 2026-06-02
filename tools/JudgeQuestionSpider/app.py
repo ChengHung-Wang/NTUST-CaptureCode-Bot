@@ -13,7 +13,11 @@ CORS(app)  # 允許跨域請求
 
 # 初始化 ddddocr
 try:
-    ocr = ddddocr.DdddOcr(show_ad=False)
+    ocr = ddddocr.DdddOcr(
+        show_ad=False, 
+        import_onnx_path="NtustCourseJudge_para121755_dsunknown_acc0.9921875_ep166_step24000_2026-06-02-05-04-52.onnx", 
+        charsets_path="charsets.json"
+    )
 except Exception as e:
     print(f"[嚴重錯誤] ddddocr 初始化失敗: {e}")
     ocr = None
