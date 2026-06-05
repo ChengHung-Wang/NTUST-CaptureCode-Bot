@@ -1,12 +1,11 @@
 <div align="left">
-    <img alt="私立水龍頭科技大學 logo" src="images/NNNTUT.svg" style="height: 40px;" />
+    <img alt="私立水龍頭科技大學 logo" src="images/NNNTUT.svg" style="height: 47px;" />
     <br><br>
-    當技職龍頭的表現與社會對他的期望有出入時，<br>
-    就會變成技職水龍頭。
+    當技職龍頭的表現與社會對他的期望有出入時，就會變成技職水龍頭。
     <h6>標準字製作: 王正宏</h6>
 </div>
 
-# NTUST-CaptureCode-Bot-Tools
+# NTUST-CaptchaCode-Bot-Tools
 
 [書面報告, Hackmd（機器學習與大數據分析技術課程期末報告, 2026.6）](https://hackmd.io/@chenghungwang/ByNNEQ_lGx)<br>
 [簡報, Figma（資訊安全導論課程期中報告, 2023.4）](https://www.figma.com/proto/JeyWwdnMcTaqSeOMaIMMXR/%E5%8F%B0%E7%A7%91%E5%A4%A7-%E8%B3%87%E8%A8%8A%E5%AE%89%E5%85%A8%E5%B0%8E%E8%AB%96-%E6%9C%9F%E4%B8%AD%E5%A0%B1%E5%91%8A?node-id=2-2079&viewport=828%2C508%2C0.19&t=tlZl0ebZaAKRU8i7-1&scaling=contain&content-scaling=fixed&starting-point-node-id=2%3A2079&page-id=0%3A1)
