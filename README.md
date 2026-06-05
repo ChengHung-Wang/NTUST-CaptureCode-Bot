@@ -1,11 +1,9 @@
 <div align="left">
     <img alt="私立水龍頭科技大學 logo" src="images/NNNTUT.svg" style="height: 40px;" />
-    <br>
+    <br><br>
     當技職龍頭的表現與社會對他的期望有出入時，<br>
     就會變成技職水龍頭。
     <h6>標準字製作: 王正宏</h6>
-    <br>
-    <br>
 </div>
 
 # NTUST-CaptureCode-Bot-Tools
