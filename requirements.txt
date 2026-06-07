@@ -1,6 +1,39 @@
-fire
-loguru
-pyyaml
-tqdm
-numpy
-pillow
+# ==================== WINDOWS 用戶注意 ====================
+# 在運行 pip install -r requirements.txt 前，請先安裝以下軟件：
+# 1. Visual C++ Redistributable (x64)：https://support.microsoft.com/en-us/help/2977003/
+# 2. （可選）Visual Studio Build Tools（若編譯失敗）：https://visualstudio.microsoft.com/downloads/
+# 3. （GPU 用戶）NVIDIA CUDA Toolkit 12.1：https://developer.nvidia.com/cuda-12-1-0-download-archive
+# 詳細說明見 README.md 中的「Windows 特定準備」部分
+# ============================================================
+
+# Core CLI / logging
+fire==0.5.0
+loguru==0.7.0
+
+# Config / utilities
+PyYAML==6.0
+tqdm==4.66.1
+
+# Math / imaging
+numpy==2.4.6
+Pillow==9.5.0
+
+# Table formatting
+prettytable==3.6.0
+
+# ONNX export & runtime
+onnx==1.21.0
+onnxruntime==1.26.0
+
+# OCR helper (recommended version from README)
+ddddocr==1.5.6
+
+# Computer vision
+opencv-python==4.7.0.72
+
+# Note: PyTorch / torchvision / torchaudio are platform and CUDA-version specific.
+# Install GPU-enabled wheels via the official PyTorch index, for example:
+#   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+# Or for CPU-only machines:
+#   pip install torch==2.0.1+cpu torchvision==0.15.2+cpu torchaudio==2.0.2+cpu -f https://download.pytorch.org/whl/cpu/torch_stable.html
+# Do NOT add the torch wheels directly to this file because they require the correct wheel index for CUDA/CPU builds.
