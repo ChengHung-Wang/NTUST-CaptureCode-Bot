@@ -50,14 +50,6 @@
     ```
 3. 安裝 php 8.0 以上的版本 (可選，如果有使用到本專案 `tools` 目錄下的程序就需要安裝。)
 
-#### 常見錯誤與解決
-- **錯誤**：`ImportError: DLL load failed while importing onnxruntime_pybind11_state`
-  - **解決**：安裝 Visual C++ Redistributable 後重啟 PowerShell 再試。
-- **錯誤**：`ERROR: Microsoft Visual C++ 14.0 or greater is required...`
-  - **解決**：安裝 Visual Studio Build Tools（見上文）。
-- **錯誤**：`CUDA out of memory` 或 PyTorch 未偵測到 GPU
-  - **解決**：運行 `nvidia-smi` 驗證驅動，若無輸出則重新安裝 NVIDIA 驅動或 CUDA Toolkit。
-
 ### 需要自己訓練模型
 
 > [!IMPORTANT]
@@ -105,21 +97,56 @@
 - 安裝 [NVIDIA CUDA Toolkit 12.1](https://developer.nvidia.com/cuda-12-1-0-download-archive)（對應你的 `torch` 版本）。
 - 確認 `nvidia-smi` 命令可用，驗證 CUDA 驅動安裝成功。
 
+### Linux 需特別準備
+
+這邊還沒有環境可以嘗試，歡迎大家 PR 上來。
+
 ## Ready-to-use 已訓練的模型
+
+## 本倉庫附帶的資料集
 
 ## Tools
 
-### 爬蟲
+### 自己 Train 模型
+
+> 執行目錄: 本專案根目錄下
+
+#### 步驟
+
+1. 建立專案(當你想要訓練不同目標的模型時才需要，若僅是加強則不用)。<br> 詳情請見[原作者的說明](https://github.com/sml2h3/dddd_trainer/tree/367d43d5ac0a5caabcf3d846265c42aa65cf79fa#3%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84%E8%AE%AD%E7%BB%83%E9%A1%B9%E7%9B%AE)
+    ```bash!
+    python3 app.py create ${Project_Name}
+    ```
+2. 準備資料集, 規則請見[原作者的說明](https://github.com/sml2h3/dddd_trainer/tree/367d43d5ac0a5caabcf3d846265c42aa65cf79fa#4%E5%87%86%E5%A4%87%E6%95%B0%E6%8D%AE)
+3. 配置 config.yaml
+    - 檔案會在每個專案目錄下, 你創建完去 `./projects` 底下就能找到與專案同名的文件夾。
+    - 更動的規則請嚴格遵循[原作者的指示](https://github.com/sml2h3/dddd_trainer/tree/367d43d5ac0a5caabcf3d846265c42aa65cf79fa#5%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)。
+    - 重申一遍，請嚴格遵循原作者的指示，叫你別動的你就別動。
+4. 創建快取, <br>詳情請見[原作者的說明](https://github.com/sml2h3/dddd_trainer/tree/367d43d5ac0a5caabcf3d846265c42aa65cf79fa#6%E7%BC%93%E5%AD%98%E6%95%B0%E6%8D%AE)
+    ```
+    python app.py cache ${Project_Name} ${Path_to_ImagesSet}
+    ```
+    example: 
+    ```
+    python3 app.py cache NtustNewMailCaptcha ./projects/NtustNewMailCaptcha/images_set/images/
+    ```
+5. 開始訓練
+    ```
+    python app.py train ${Project_Name}
+    ```
+
+### 爬蟲與驗證工具
+
+#### Web-Mail 登入畫面驗證碼
+
+#### 
+
 
 ### 訓練工具
 
 
 ### 瀏覽器訓練工具
 
-
-### 
-
-#### tools/spider.php
 ##### 抓取一張驗證碼(會將圖片存在跟spider.php同目錄)
 Commend:
 ```shell
@@ -129,6 +156,7 @@ Shell Result:(captcha hash)
 ```shell
 KXuPL01-11BXEn5Vndn_8Z1HKYcWbFoiVK41oKAIRtf-nVfACwyBtUHRVnCEVfKegYkHTeuWH0cmRvjPFL6lOA%
 ```
+
 ##### 驗證是否正確
 Commend:
 ```shell
