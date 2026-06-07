@@ -23,7 +23,7 @@
 <br>
 這樣的主題，我曾經於「資訊安全導論」(2023.4)、「機器學習與大數據分析技術」(2026.6) 發表過。<br>
 手法上，都是使用带带弟弟OCR相關的工具作為辨識與模型訓練的工具，光是带带弟弟OCR內建開箱即用的模型就能辨識出7成的驗證碼。<br>
-若是自己 Train 模型，實測抓取 1000 的正確率都可以高達 97% 以上。
+若是自己 Train 模型，實測抓取 1000 次的正確率都可以高達 97% 以上。
 
 所以希望學校要做就好好做，要做表面功夫也不該是造成使用者困擾。
 
@@ -103,6 +103,29 @@
 
 ## Ready-to-use 已訓練的模型
 
+### WebMail
+
+專案路徑: `./projects/NtustNewMailCaptcha`
+
+- 模型檔案所在目錄：`./projects/NtustNewMailCaptcha/models/2026-06-07-03-41-13/`
+    - 本地測試集準確率：**100% (ACC=1.0)**
+    - 實際連線校務系統：**993 / 1000 = 99.3%**
+- 模型檔案所在目錄：`./projects/NtustNewMailCaptcha/models/2026-06-01-03-05-32/`
+    - 本地測試集準確率：**98.9323% (ACC=0.9893238434163701)**
+    - 實際連線校務系統：**1002 / 953 = 95.1%**
+
+
+### 學期課程評量系統
+
+專案路徑: `./projects/NtustCourseJudge`
+
+- 模型檔案所在目錄(未執行資料預處理)： `./projects/NtustCourseJudge/models/2026-06-02-14-54-33(oringal-datasets)`
+  - 本地測試集準確率：**100% (ACC=1.0)**
+  - 實際連線校務系統：**998 / 1006 = 99.2%**
+- 模型檔案所在目錄： `./projects/NtustCourseJudge/models/2026-06-02-05-04-52/`
+  - 本地測試集準確率：**99.2187%**
+  - 實際連線校務系統：**987 / 1001 = 98.6%**
+
 ## 本倉庫附帶的資料集
 
 ## Tools
@@ -122,7 +145,7 @@
     - 檔案會在每個專案目錄下, 你創建完去 `./projects` 底下就能找到與專案同名的文件夾。
     - 更動的規則請嚴格遵循[原作者的指示](https://github.com/sml2h3/dddd_trainer/tree/367d43d5ac0a5caabcf3d846265c42aa65cf79fa#5%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)。
     - 重申一遍，請嚴格遵循原作者的指示，叫你別動的你就別動。
-4. 創建快取, <br>詳情請見[原作者的說明](https://github.com/sml2h3/dddd_trainer/tree/367d43d5ac0a5caabcf3d846265c42aa65cf79fa#6%E7%BC%93%E5%AD%98%E6%95%B0%E6%8D%AE)
+4. 創建快取, 詳情請見[原作者的說明](https://github.com/sml2h3/dddd_trainer/tree/367d43d5ac0a5caabcf3d846265c42aa65cf79fa#6%E7%BC%93%E5%AD%98%E6%95%B0%E6%8D%AE)
     ```
     python app.py cache ${Project_Name} ${Path_to_ImagesSet}
     ```
